@@ -1,182 +1,87 @@
-import React, { CSSProperties } from 'react';
-import { action } from '@storybook/addon-actions';
-import { Carousel } from '../src/index';
+import React from "react";
+import banner2 from "../../../assets/banner2.jpg";
+import banner3 from "../../../assets/banner3.jpg";
+import banner4 from "../../../assets/banner4.jpg";
+import banner6 from "../../../assets/banner6.jpg";
 
-import { withKnobs, boolean, number, text } from '@storybook/addon-knobs';
-
-// carousel styles
-import '../src/main.scss';
-import '../src/carousel.scss';
-import '../src/examples/presentation/presentation.scss';
-
-const createCarouselItemImage = (index, options = {}) => (
-    <div key={index}>
-        <img src={`/assets/${index}.jpeg`} />
-        <p className="legend">Legend {index}</p>
-    </div>
-);
-
-const baseChildren = <div>{[1, 2, 3, 4, 5].map(createCarouselItemImage)}</div>;
-
-const tooglesGroupId = 'Toggles';
-const valuesGroupId = 'Values';
-const mainGroupId = 'Main';
-
-const getConfigurableProps = () => ({
-    showArrows: boolean('showArrows', true, tooglesGroupId),
-    showStatus: boolean('showStatus', true, tooglesGroupId),
-    showIndicators: boolean('showIndicators', true, tooglesGroupId),
-    infiniteLoop: boolean('infiniteLoop', true, tooglesGroupId),
-    showThumbs: boolean('showThumbs', true, tooglesGroupId),
-    useKeyboardArrows: boolean('useKeyboardArrows', true, tooglesGroupId),
-    autoPlay: boolean('autoPlay', true, tooglesGroupId),
-    stopOnHover: boolean('stopOnHover', true, tooglesGroupId),
-    swipeable: boolean('swipeable', true, tooglesGroupId),
-    dynamicHeight: boolean('dynamicHeight', true, tooglesGroupId),
-    emulateTouch: boolean('emulateTouch', true, tooglesGroupId),
-    autoFocus: boolean('autoFocus', false, tooglesGroupId),
-    thumbWidth: number('thumbWidth', 100, {}, valuesGroupId),
-    selectedItem: number('selectedItem', 0, {}, valuesGroupId),
-    interval: number('interval', 2000, {}, valuesGroupId),
-    transitionTime: number('transitionTime', 500, {}, valuesGroupId),
-    swipeScrollTolerance: number('swipeScrollTolerance', 5, {}, valuesGroupId),
-    ariaLabel: text('ariaLabel', undefined),
-});
-
-export default {
-    title: '01 - Basic',
-    decorators: [withKnobs],
-    component: Carousel,
+const Banner = () => {
+  return (
+    <section>
+      <div className="carousel w-full h-[600px]">
+      <div id="slide1" className="carousel-item w-full relative">
+          <img src={banner2} className="w-full" />
+          <div className="absolute rounded-xl items-center p-4 top-0 left-0 h-full bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] text-gray-200">
+            <h2 className="text-5xl text-center font-bold mt-[220px]">
+            Introduction to Music Theory
+            </h2>
+            <p className="text-xl text-center mt-4 p-4">Embark on a rhythmic adventure and explore the captivating world of music! Discover different beats, rhythms, and musical styles while honing your skills and unleashing your creativity. Join us on this exciting journey and let the magic of music guide your way.</p>
+          </div>
+          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <a href="#slide4" className="btn btn-circle">
+              ❮
+            </a>
+            <a href="#slide2" className="btn btn-circle">
+              ❯
+            </a>
+          </div>
+        </div>
+        <div id="slide2" className="carousel-item relative w-full">
+          <img
+            src={banner3}
+            className="w-full"
+          />
+          <div className="absolute rounded-xl items-center p-4 top-0 left-0 h-full bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] text-white">
+            <h2 className="text-5xl text-center font-bold mt-[220px]">Vocal Mastery: Discover Your Voice</h2>
+            <p className="text-xl text-center mt-4 p-4"> Unleash your inner musician and dive into the world of melodies! From classical compositions to contemporary tunes, this music class will take you on a melodic journey like no other. Learn to play beautiful melodies, compose your own songs, and let the power of music ignite your passion.</p>
+          </div>
+          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <a href="#slide1" className="btn btn-circle">
+              ❮
+            </a>
+            <a href="#slide3" className="btn btn-circle">
+              ❯
+            </a>
+          </div>
+        </div>
+        <div id="slide3" className="carousel-item relative w-full">
+          <img
+            src={banner4}
+            className="w-full"
+          />
+          <div className="absolute rounded-xl items-center p-4 top-0 left-0 h-full bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] text-white">
+            <h2 className="text-5xl text-center font-bold mt-[220px]">Songwriting and Composition Lab</h2>
+            <p className="text-xl text-center mt-4 p-4">Embark on a musical adventure as you explore a variety of instruments! Discover the unique sounds and techniques of guitars, pianos, drums, and more. Whether you're a beginner or an experienced musician, this class offers the perfect opportunity to expand your repertoire and master the art of playing instruments.</p>
+          </div>
+          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <a href="#slide2" className="btn btn-circle">
+              ❮
+            </a>
+            <a href="#slide4" className="btn btn-circle">
+              ❯
+            </a>
+          </div>
+        </div>
+        <div id="slide4" className="carousel-item relative w-full">
+          <img
+            src={banner6}
+            className="w-full"
+          />
+          <div className="absolute rounded-xl items-center p-4 top-0 left-0 h-full bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] text-white">
+            <h2 className="text-5xl text-center font-bold mt-[220px]">Instrumental Explorations</h2>
+            <p className="text-xl text-center mt-4 p-4"> Delve into the enchanting world of Guitar and unlock the secrets of musical composition. Learn how to blend different notes, chords, and harmonies to create beautiful and mesmerizing compositions. Develop your ear for Guitar, explore chord progressions, and let your imagination soar as you become a master of musical Guitar.</p>
+          </div>
+          <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
+            <a href="#slide3" className="btn btn-circle">
+              ❮
+            </a>
+            <a href="#slide1" className="btn btn-circle">
+              ❯
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 };
 
-export const base = () => <Carousel {...getConfigurableProps()}>{baseChildren.props.children}</Carousel>;
-
-export const vertical = () => (
-    <Carousel axis="vertical" {...getConfigurableProps()}>
-        {baseChildren.props.children}
-    </Carousel>
-);
-
-export const centerMode = () => (
-    <Carousel
-        infiniteLoop
-        centerMode
-        centerSlidePercentage={number('centerSlidePercentage', 80, {}, mainGroupId)}
-        {...getConfigurableProps()}
-    >
-        {baseChildren.props.children}
-    </Carousel>
-);
-
-export const handlers = () => (
-    <Carousel onClickThumb={action('click thumb')} onClickItem={action('click item')} onChange={action('change')}>
-        {baseChildren.props.children}
-    </Carousel>
-);
-
-export const withCustomStatusArrowsAndIndicators = () => {
-    const arrowStyles= CSSProperties = {
-        position: 'absolute',
-        zIndex: 2,
-        top: 'calc(50% - 15px)',
-        width: 30,
-        height: 30,
-        cursor: 'pointer',
-    };
-
-    const indicatorStyles= CSSProperties = {
-        background: '#fff',
-        width: 8,
-        height: 8,
-        display: 'inline-block',
-        margin: '0 8px',
-    };
-
-    return (
-        <Carousel
-            statusFormatter={(current, total) => `Current slide: ${current} / Total: ${total}`}
-            renderArrowPrev={(onClickHandler, hasPrev, label) =>
-                hasPrev && (
-                    <button type="button" onClick={onClickHandler} title={label} style={{ ...arrowStyles, left: 15 }}>
-                        -
-                    </button>
-                )
-            }
-            renderArrowNext={(onClickHandler, hasNext, label) =>
-                hasNext && (
-                    <button type="button" onClick={onClickHandler} title={label} style={{ ...arrowStyles, right: 15 }}>
-                        +
-                    </button>
-                )
-            }
-            renderIndicator={(onClickHandler, isSelected, index, label) => {
-                if (isSelected) {
-                    return (
-                        <li
-                            style={{ ...indicatorStyles, background: '#000' }}
-                            aria-label={`Selected: ${label} ${index + 1}`}
-                            title={`Selected: ${label} ${index + 1}`}
-                        />
-                    );
-                }
-                return (
-                    <li
-                        style={indicatorStyles}
-                        onClick={onClickHandler}
-                        onKeyDown={onClickHandler}
-                        value={index}
-                        key={index}
-                        role="button"
-                        tabIndex={0}
-                        title={`${label} ${index + 1}`}
-                        aria-label={`${label} ${index + 1}`}
-                    />
-                );
-            }}
-        >
-            {baseChildren.props.children}
-        </Carousel>
-    );
-};
-
-export const fixedWidth = () => <Carousel width="700px">{baseChildren.props.children}</Carousel>;
-export const noChildren = () => <Carousel />;
-export const noImages = () => (
-    <Carousel>
-        <div key="slide1" style={{ padding: 20, height: 150 }}>
-            Text 01
-        </div>
-        <div key="slide2" style={{ padding: 20, height: 150 }}>
-            Text 02
-        </div>
-    </Carousel>
-);
-
-export const dynamicHeightImages = () => (
-    <Carousel showArrows={false} dynamicHeight={true}>
-        <div key="slide1">
-            <img src="http://placehold.it/350x150" />
-        </div>
-        <div key="slide2">
-            <img src="http://placehold.it/255x150" />
-        </div>
-        <div key="slide3">
-            <img src="http://placehold.it/295x150" />
-        </div>
-        <div key="slide4">
-            <img src="http://placehold.it/310x150" />
-        </div>
-        <div key="slide5">
-            <img src="http://placehold.it/575x250" />
-        </div>
-        <div key="slide6">
-            <img src="http://placehold.it/450x150" />
-        </div>
-    </Carousel>
-);
-
-export const fade = () => (
-    <Carousel {...getConfigurableProps()} animationHandler="fade" swipeable={false}>
-        {baseChildren.props.children}
-    </Carousel>
-);
+export default Banner;
