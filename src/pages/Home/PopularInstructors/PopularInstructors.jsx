@@ -7,7 +7,7 @@ const PopularInstructors = () => {
     const [instructors, setInstructors] = useState([]);
 
   useEffect(() => {
-    fetch("classes.json")
+    fetch("http://localhost:3000/classes")
       .then((res) => res.json())
       .then((data) => {
         const popularInstructors = data.filter((instructor) => instructor.enrolledStudent > 100)

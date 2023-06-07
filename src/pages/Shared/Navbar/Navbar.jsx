@@ -1,21 +1,21 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import navLogo from "../../../assets/musicSchoolLogo.jpg";
 
 const Navbar = () => {
   const navOptions = (
     <>
       <li>
-        <a>Home</a>
+        <Link to="/">Home</Link>
       </li>
       <li>
-        <a>Instructors</a>
+        <Link to="/instructors">Instructors</Link>
       </li>
       <li>
-        <a>Classes</a>
+        <Link to="/classes">Classes</Link>
       </li>
       <li>
-        <a>Dashboard</a>
+        <Link to="/">Dashboard</Link>
       </li>
     </>
   );
@@ -43,7 +43,7 @@ const Navbar = () => {
             </label>
             <ul
               tabIndex={0}
-              className="menu text-black menu-sm dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52 font-semibold"
+              className="menu text-black menu-sm dropdown-content mt-3 p-2 shadow rounded-box w-52 font-semibold bg-white"
             >
               {navOptions}
             </ul>
