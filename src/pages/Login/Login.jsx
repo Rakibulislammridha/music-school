@@ -4,25 +4,32 @@ import { BiHide, BiLogIn, BiShow } from "react-icons/bi";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import { FcGoogle } from "react-icons/fc";
+import { useForm } from "react-hook-form";
 
 const Login = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm();
+
   const [showPass, setShowPass] = useState(false);
 
   const {signIn} = useContext(AuthContext)
 
-  const handleLogin = (event) => {
-    event.preventDefault();
-    const form = event.target;
-    const email = form.email.value;
-    const password = form.password.value;
+//   const handleLogin = (event) => {
+//     event.preventDefault();
+//     const form = event.target;
+//     const email = form.email.value;
+//     const password = form.password.value;
 
-    console.log(email, password);
-    signIn(email, password)
-    .then(result => {
-        const user = result.user;
-        console.log(user);
-    })
-  };
+//     console.log(email, password);
+//     signIn(email, password)
+//     .then(result => {
+//         const user = result.user;
+//         console.log(user);
+//     })
+//   };
+
+  const onSubmit = data =>{
+    console.log(data);
+  }
 
   const togglePassShow = () => {
     setShowPass(!showPass);
@@ -36,7 +43,7 @@ const Login = () => {
             <img src={loginLogo} alt="" />
           </div>
           <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-            <form onSubmit={handleLogin} className="card-body">
+            <form onSubmit={handleSubmit(onSubmit)} className="card-body">
               <h3 className="text-3xl font-semibold text-center">
                 Login Now !
               </h3>
@@ -47,9 +54,11 @@ const Login = () => {
                 <input
                   type="email"
                   name="email"
+                  {...register("email", { required: true })}
                   placeholder="email"
                   className="input input-bordered"
                 />
+                {errors.email && <span className='text-red-600'>Email is required</span>}
               </div>
               <div className="form-control">
                 <label className="label">
@@ -59,9 +68,20 @@ const Login = () => {
                   <input
                     type={showPass ? "text" : "password"}
                     name="password"
+                    {...register("password", { 
+                        required: true ,
+                        minLength: 6,
+                        maxLength: 15,
+                        pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                    }
+                    )}
                     placeholder="***********"
                     className="input input-bordered w-full"
                   />
+                  {errors.password?.type === "required" && <span className='text-red-600'>Password is required </span>}
+                  {errors.password?.type === "minLength" && <span className='text-red-600'>Enter At least 6 characters</span>}
+                  {errors.password?.type === "maxLength" && <span className='text-red-600'>Maximum 15 characters</span>}
+                  {errors.password?.type === "pattern" && <span className='text-red-600'>Enter a uppercase and a special character</span>}
                   <span
                     onClick={togglePassShow}
                     className="btn btn-sm bg-white border-none absolute left-[268px] top-[9px]"
