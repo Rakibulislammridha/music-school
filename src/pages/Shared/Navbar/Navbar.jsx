@@ -1,8 +1,18 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import navLogo from "../../../assets/musicSchoolLogo.jpg";
+import { AuthContext } from "../../../providers/AuthProviders";
 
 const Navbar = () => {
+
+  const {user, logOut} = useContext(AuthContext);
+
+  const handleLogout = () =>{
+    logOut()
+    .then(()=>{})
+    .catch(error => console.log(error))
+  }
+
   const navOptions = (
     <>
       <li>
@@ -61,9 +71,15 @@ const Navbar = () => {
           <ul className="menu menu-horizontal px-1 font-semibold">{navOptions}</ul>
         </div>
         <div className="navbar-end">
-          <Link to="/login">
+          {
+            user ? <>
+             <button onClick={handleLogout} className="btn btn-sm bg-orange-600 border-orange-600 text-white mr-8">Logout</button>
+            </> : <>
+             <Link to="/login">
             <button className="btn btn-sm bg-orange-600 border-orange-600 text-white mr-8">Login</button>
           </Link>
+            </>
+          }
         </div>
       </div>
     </>

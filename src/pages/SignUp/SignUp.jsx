@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import registerLogo from "../../assets/registerLogo.jpg"
 import { BiHide, BiShow } from 'react-icons/bi';
 import {CiUnlock} from "react-icons/ci"
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
 import { useForm } from 'react-hook-form';
+import { Helmet } from 'react-helmet-async';
+import { AuthContext } from '../../providers/AuthProviders';
+import Swal from 'sweetalert2';
 
 const SignUp = () => {
 
     const { register, handleSubmit, formState: { errors } } = useForm();
+
+    const navigate = useNavigate();
+
+    const {createUser} = useContext(AuthContext);
 
     const [showPass, setShowPass] = useState(false);
 
@@ -16,6 +23,19 @@ const SignUp = () => {
 
     const onSubmit = data => {
         console.log(data)
+        createUser(data.email, data.password)
+        .then(result =>{
+            const loggedUser = result.user;
+            console.log(loggedUser);
+            Swal.fire({
+                position: 'top-center',
+                icon: 'success',
+                title: 'SignUp Successful',
+                showConfirmButton: false,
+                timer: 1500
+              })
+              navigate("/")
+        })
     };
 
     const togglePassShow = () => {
@@ -27,7 +47,10 @@ const SignUp = () => {
       }
 
     return (
-        <div>
+        <>
+            <Helmet>
+                <title>Music School | Sign Up</title>
+            </Helmet>
             <div className="hero min-h-screen">
         <div className="hero-content flex-col lg:flex-row mt-20">
           <div className="text-center lg:text-left">
@@ -118,7 +141,8 @@ const SignUp = () => {
                 <div className="relative">
                   <input
                     type={showConfirmPass ? "text" : "password"}
-                    {...register("password", { 
+                    name="confirmPassword"
+                    {...register("confirmPassword", { 
                         required: true ,
                         minLength: 6,
                         maxLength: 15,
@@ -128,10 +152,10 @@ const SignUp = () => {
                     placeholder="***********"
                     className="input input-bordered w-full"
                   />
-                  {errors.password?.type === "required" && <span className='text-red-600'>Password is required </span>}
-                  {errors.password?.type === "minLength" && <span className='text-red-600'>Enter At least 6 characters</span>}
-                  {errors.password?.type === "maxLength" && <span className='text-red-600'>Maximum 15 characters</span>}
-                  {errors.password?.type === "pattern" && <span className='text-red-600'>Enter a uppercase and a special character</span>}
+                  {errors.confirmPassword?.type === "required" && <span className='text-red-600'>Password is required </span>}
+                  {errors.confirmPassword?.type === "minLength" && <span className='text-red-600'>Enter At least 6 characters</span>}
+                  {errors.confirmPassword?.type === "maxLength" && <span className='text-red-600'>Maximum 15 characters</span>}
+                  {errors.confirmPassword?.type === "pattern" && <span className='text-red-600'>Enter a uppercase and a special character</span>}
                   <span
                     onClick={toggleConfirmPass}
                     className="btn btn-sm bg-white border-none absolute left-[268px] top-[9px]"
@@ -168,7 +192,7 @@ const SignUp = () => {
           </div>
         </div>
       </div>
-        </div>
+        </>
     );
 };
 
