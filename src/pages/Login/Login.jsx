@@ -8,6 +8,7 @@ import {ImSpinner10} from "react-icons/im"
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
+import { saveUser } from "../../api/auth";
 
 const Login = () => {
   const { register, handleSubmit, formState: { errors } } = useForm();
@@ -53,6 +54,8 @@ const Login = () => {
     signInWithGoogle()
     .then(result =>{
         console.log(result.user);
+        //   Save user to database : Todo
+        saveUser(result?.user)
         navigate(from, {replace: true})
     })
     .catch(error =>{
