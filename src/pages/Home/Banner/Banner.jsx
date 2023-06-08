@@ -11,10 +11,10 @@ const Banner = () => {
       <div id="slide1" className="carousel-item w-full relative">
           <img src={banner2} className="w-full" />
           <div className="absolute rounded-xl items-center p-4 top-0 left-0 h-full bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] text-gray-200">
-            <h2 className="text-5xl text-center font-bold mt-[220px]">
+            <h2 className="text-3xl text-center font-bold mt-[420px]">
             Introduction to Music Theory
             </h2>
-            <p className="text-xl text-center mt-4 p-4">Embark on a rhythmic adventure and explore the captivating world of music! Discover different beats, rhythms, and musical styles while honing your skills and unleashing your creativity. Join us on this exciting journey and let the magic of music guide your way.</p>
+            <p className="text-sm text-center p-4">Embark on a rhythmic adventure and explore the captivating world of music! Discover different beats, rhythms, and musical styles while honing your skills and unleashing your creativity. Join us on this exciting journey and let the magic of music guide your way.</p>
           </div>
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide4" className="btn btn-circle">
@@ -31,8 +31,8 @@ const Banner = () => {
             className="w-full"
           />
           <div className="absolute rounded-xl items-center p-4 top-0 left-0 h-full bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] text-white">
-            <h2 className="text-5xl text-center font-bold mt-[220px]">Vocal Mastery: Discover Your Voice</h2>
-            <p className="text-xl text-center mt-4 p-4"> Unleash your inner musician and dive into the world of melodies! From classical compositions to contemporary tunes, this music class will take you on a melodic journey like no other. Learn to play beautiful melodies, compose your own songs, and let the power of music ignite your passion.</p>
+            <h2 className="text-3xl text-center font-bold mt-[420px]">Vocal Mastery: Discover Your Voice</h2>
+            <p className="text-sm text-center p-4"> Unleash your inner musician and dive into the world of melodies! From classical compositions to contemporary tunes, this music class will take you on a melodic journey like no other. Learn to play beautiful melodies, compose your own songs, and let the power of music ignite your passion.</p>
           </div>
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide1" className="btn btn-circle">
@@ -49,8 +49,8 @@ const Banner = () => {
             className="w-full"
           />
           <div className="absolute rounded-xl items-center p-4 top-0 left-0 h-full bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] text-white">
-            <h2 className="text-5xl text-center font-bold mt-[220px]">Songwriting and Composition Lab</h2>
-            <p className="text-xl text-center mt-4 p-4">Embark on a musical adventure as you explore a variety of instruments! Discover the unique sounds and techniques of guitars, pianos, drums, and more. Whether you're a beginner or an experienced musician, this class offers the perfect opportunity to expand your repertoire and master the art of playing instruments.</p>
+            <h2 className="text-3xl text-center font-bold mt-[420px]">Songwriting and Composition Lab</h2>
+            <p className="text-sm text-center p-4">Embark on a musical adventure as you explore a variety of instruments! Discover the unique sounds and techniques of guitars, pianos, drums, and more. Whether you're a beginner or an experienced musician, this class offers the perfect opportunity to expand your repertoire and master the art of playing instruments.</p>
           </div>
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide2" className="btn btn-circle">
@@ -67,8 +67,8 @@ const Banner = () => {
             className="w-full"
           />
           <div className="absolute rounded-xl items-center p-4 top-0 left-0 h-full bg-gradient-to-r from-[#151515] to-[rgba(21, 21, 21, 0)] text-white">
-            <h2 className="text-5xl text-center font-bold mt-[220px]">Instrumental Explorations</h2>
-            <p className="text-xl text-center mt-4 p-4"> Delve into the enchanting world of Guitar and unlock the secrets of musical composition. Learn how to blend different notes, chords, and harmonies to create beautiful and mesmerizing compositions. Develop your ear for Guitar, explore chord progressions, and let your imagination soar as you become a master of musical Guitar.</p>
+            <h2 className="text-3xl text-center font-bold mt-[420px]">Instrumental Explorations</h2>
+            <p className="text-sm text-center p-4"> Delve into the enchanting world of Guitar and unlock the secrets of musical composition. Learn how to blend different notes, chords, and harmonies to create beautiful and mesmerizing compositions. Develop your ear for Guitar, explore chord progressions, and let your imagination soar as you become a master of musical Guitar.</p>
           </div>
           <div className="absolute flex justify-between transform -translate-y-1/2 left-5 right-5 top-1/2">
             <a href="#slide3" className="btn btn-circle">

@@ -4,6 +4,7 @@ import { BiHide, BiShow } from 'react-icons/bi';
 import {CiUnlock} from "react-icons/ci"
 import { Link, useNavigate } from 'react-router-dom';
 import { FcGoogle } from 'react-icons/fc';
+import {ImSpinner10} from "react-icons/im"
 import { useForm } from 'react-hook-form';
 import { Helmet } from 'react-helmet-async';
 import { AuthContext } from '../../providers/AuthProviders';
@@ -11,15 +12,17 @@ import Swal from 'sweetalert2';
 
 const SignUp = () => {
 
-    const { register, handleSubmit, formState: { errors } } = useForm();
+    const { register, handleSubmit, formState: { errors }, reset, watch } = useForm();
 
     const navigate = useNavigate();
 
-    const {createUser} = useContext(AuthContext);
+    const {createUser, updateUser, loading, setLoading,} = useContext(AuthContext);
 
     const [showPass, setShowPass] = useState(false);
 
     const [showConfirmPass, setShowConfirmPass] = useState(false);
+
+    const password = watch("password");
 
     const onSubmit = data => {
         console.log(data)
@@ -27,14 +30,21 @@ const SignUp = () => {
         .then(result =>{
             const loggedUser = result.user;
             console.log(loggedUser);
-            Swal.fire({
-                position: 'top-center',
-                icon: 'success',
-                title: 'SignUp Successful',
-                showConfirmButton: false,
-                timer: 1500
-              })
-              navigate("/")
+            updateUser(data.name, data.photo)
+            .then(() =>{
+                console.log("usr profile updated");
+                reset()
+                Swal.fire({
+                    position: 'top-center',
+                    icon: 'success',
+                    title: 'SignUp Successful',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                  navigate("/")
+                  setLoading(false)
+            })
+            .catch(error => console.log(error))
         })
     };
 
@@ -147,6 +157,7 @@ const SignUp = () => {
                         minLength: 6,
                         maxLength: 15,
                         pattern: /(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])/,
+                        validate: (value) => value === password,
                     }
                     )}
                     placeholder="***********"
@@ -156,6 +167,7 @@ const SignUp = () => {
                   {errors.confirmPassword?.type === "minLength" && <span className='text-red-600'>Enter At least 6 characters</span>}
                   {errors.confirmPassword?.type === "maxLength" && <span className='text-red-600'>Maximum 15 characters</span>}
                   {errors.confirmPassword?.type === "pattern" && <span className='text-red-600'>Enter a uppercase and a special character</span>}
+                  {errors.confirmPassword?.type === "validate" && <span className='text-red-600'>Password Don't Match</span>}
                   <span
                     onClick={toggleConfirmPass}
                     className="btn btn-sm bg-white border-none absolute left-[268px] top-[9px]"
@@ -170,10 +182,14 @@ const SignUp = () => {
               </div>
               <div className="form-control mt-6">
                 <button type="submit" className="btn bg-orange-600 text-white hover:bg-orange-400">
+                  { loading ? <ImSpinner10 size={28} className="m-auto animate-spin"></ImSpinner10> : <span className='flex'>
                   <span className="text-2xl">
                     <CiUnlock></CiUnlock>
                   </span>
+                  <span className='mt-[5px] ml-2'>
                   Sign Up
+                  </span>
+                  </span>}
                 </button>
               </div>
               <p className="font-semibold">

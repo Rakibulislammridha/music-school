@@ -11,7 +11,7 @@ const HarmonyHall = () => {
           subHeading={"welcome To"}
           heading={"Harmony Hall"}
         ></Title>
-      <div className="hero min-h-screen">
+      <div className="hero my-20">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
             src={harmonyHall}

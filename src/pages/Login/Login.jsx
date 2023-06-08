@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import loginLogo from "../../assets/loginlogo.jpg";
 import { BiHide, BiLogIn, BiShow } from "react-icons/bi";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProviders";
 import { FcGoogle } from "react-icons/fc";
+import {ImSpinner10} from "react-icons/im"
 import { useForm } from "react-hook-form";
 import { Helmet } from "react-helmet-async";
 import Swal from "sweetalert2";
@@ -13,7 +14,11 @@ const Login = () => {
 
   const [showPass, setShowPass] = useState(false);
 
-  const {signIn} = useContext(AuthContext)
+  const {signIn, loading, setLoading,} = useContext(AuthContext);
+
+  const navigate = useNavigate();
+
+  const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) =>{
     console.log(data);
@@ -28,6 +33,8 @@ const Login = () => {
             showConfirmButton: false,
             timer: 1500
           })
+          navigate(from, {replace: true})
+          setLoading(false)
     })
   }
 
@@ -99,10 +106,12 @@ const Login = () => {
               </div>
               <div className="form-control mt-6">
                 <button type="submit" className="btn bg-orange-600 text-white hover:bg-orange-400">
+                  { loading ? <ImSpinner10 size={28} className="m-auto animate-spin"></ImSpinner10> : <span className="flex">
                   <span className="text-2xl">
                     <BiLogIn></BiLogIn>
                   </span>
-                  Login
+                  <span className="mt-[5px] ml-2">Login</span>
+                  </span>}
                 </button>
               </div>
               <p className="font-semibold">

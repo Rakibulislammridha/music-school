@@ -24,9 +24,9 @@ const Navbar = () => {
       <li>
         <Link to="/classes">Classes</Link>
       </li>
-      <li>
+      {user && <li>
         <Link to="/">Dashboard</Link>
-      </li>
+      </li>}
     </>
   );
 
@@ -72,11 +72,16 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {
+            user && <>
+             <img className="h-[40px] w-[40px] border rounded-full mr-4" src={user?.photoURL} alt="" />
+            </>
+          }
+          {
             user ? <>
-             <button onClick={handleLogout} className="btn btn-sm bg-orange-600 border-orange-600 text-white mr-8">Logout</button>
+             <button onClick={handleLogout} className="btn btn-sm bg-orange-600 hover:bg-orange-400 hover:border-orange-400 border-orange-600 text-white mr-8">Logout</button>
             </> : <>
              <Link to="/login">
-            <button className="btn btn-sm bg-orange-600 border-orange-600 text-white mr-8">Login</button>
+            <button className="btn btn-sm bg-orange-600 hover:bg-orange-400 hover:border-orange-400 border-orange-600 text-white mr-8">Login</button>
           </Link>
             </>
           }
