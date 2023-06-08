@@ -14,7 +14,7 @@ const Login = () => {
 
   const [showPass, setShowPass] = useState(false);
 
-  const {signIn, loading, setLoading,} = useContext(AuthContext);
+  const {signIn, loading, setLoading, signInWithGoogle} = useContext(AuthContext);
 
   const navigate = useNavigate();
 
@@ -35,6 +35,36 @@ const Login = () => {
           })
           navigate(from, {replace: true})
           setLoading(false)
+    })
+    .catch(error => {
+        console.log(error.message);
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Ops Something Is wrong',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        setLoading(false)
+    })
+  }
+
+  const handleGoogleSignIn = () =>{
+    signInWithGoogle()
+    .then(result =>{
+        console.log(result.user);
+        navigate(from, {replace: true})
+    })
+    .catch(error =>{
+        console.log(error.message);
+        Swal.fire({
+            position: 'top-center',
+            icon: 'error',
+            title: 'Ops Something Is wrong',
+            showConfirmButton: false,
+            timer: 1500
+          })
+        setLoading(false)
     })
   }
 
@@ -124,7 +154,7 @@ const Login = () => {
               </p>
             </form>
             <div className="divider">OR Login With</div>
-            <div className="flex flex-row justify-center items-center mb-8 mt-2">
+            <div onClick={handleGoogleSignIn} className="flex flex-row justify-center items-center mb-8 mt-2">
                 <span className='btn bg-white border-none hover:bg-white'><FcGoogle size={36}></FcGoogle></span>
             </div>
           </div>

@@ -16,7 +16,9 @@ const SignUp = () => {
 
     const navigate = useNavigate();
 
-    const {createUser, updateUser, loading, setLoading,} = useContext(AuthContext);
+    const from = location.state?.from?.pathname || "/";
+
+    const {createUser, updateUser, loading, setLoading, signInWithGoogle} = useContext(AuthContext);
 
     const [showPass, setShowPass] = useState(false);
 
@@ -41,12 +43,31 @@ const SignUp = () => {
                     showConfirmButton: false,
                     timer: 1500
                   })
-                  navigate("/")
+                  navigate(from, {replace: true})
                   setLoading(false)
             })
             .catch(error => console.log(error))
         })
     };
+
+    const handleGoogleSignIn = () =>{
+        signInWithGoogle()
+        .then(result =>{
+            console.log(result.user);
+            navigate(from, {replace: true})
+        })
+        .catch(error =>{
+            console.log(error.message);
+            Swal.fire({
+                position: 'top-center',
+                icon: 'error',
+                title: 'Ops Something Is wrong',
+                showConfirmButton: false,
+                timer: 1500
+              })
+            setLoading(false)
+        })
+      }
 
     const togglePassShow = () => {
         setShowPass(!showPass);
@@ -202,7 +223,7 @@ const SignUp = () => {
               </p>
             </form>
             <div className="divider mt-0">OR Login/SignUp With</div>
-            <div className="flex flex-row justify-center items-center mb-8 mt-2">
+            <div onClick={handleGoogleSignIn} className="flex flex-row justify-center items-center mb-8 mt-2">
                 <span className='btn bg-white border-none hover:bg-white'><FcGoogle size={36}></FcGoogle></span>
             </div>
           </div>
