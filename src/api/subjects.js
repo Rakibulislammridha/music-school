@@ -10,3 +10,10 @@ export const addSubject = async (SubjectData)=>{
     const data = await response.json();
     return data;
 }
+
+// Get Subjects
+export const getAllClasses = async () =>{
+    const response = await fetch(`${import.meta.env.VITE_API_URL}/subjects`);
+    const data = response.json();
+    return data;
+}
