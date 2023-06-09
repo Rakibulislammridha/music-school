@@ -49,7 +49,7 @@ const SignUp = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          //   Save user to database : Todo
+          //   Save user to database 
           saveUser(result?.user)
           navigate(from, { replace: true });
           setLoading(false);
@@ -62,8 +62,8 @@ const SignUp = () => {
     signInWithGoogle()
       .then((result) => {
         console.log(result.user);
-        //   Save user to database : Todo
-        saveUser(result?.user);
+        //   Save user to database
+        saveUser(result.user)
         navigate(from, { replace: true });
       })
       .catch((error) => {

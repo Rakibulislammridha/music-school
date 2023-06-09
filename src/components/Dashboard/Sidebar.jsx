@@ -1,31 +1,44 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GrLogout } from "react-icons/gr";
+import { BsFillCreditCardFill } from "react-icons/bs";
 import { AiOutlineBars } from "react-icons/ai";
-// import { BsFillHouseAddFill } from "react-icons/bs";
+import { BsFillHouseAddFill } from "react-icons/bs";
+import { AiFillHome } from "react-icons/ai";
+import { AiOutlineSelect } from "react-icons/ai";
+import { SiBookstack } from "react-icons/si";
+import { MdManageAccounts } from "react-icons/md";
+import { GiEntryDoor } from "react-icons/gi";
+import { ImBooks } from "react-icons/im";
+import { FaUsers } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProviders";
 import websiteLogo from "../../assets/musicSchoolLogo.jpg";
 const Sidebar = () => {
   const navigate = useNavigate();
-  const [toggle, setToggle] = useState(false);
+
   const { user, logOut } = useContext(AuthContext);
 
   const [isActive, setActive] = useState("false");
-  const toggleHandler = (event) => {
-    setToggle(event.target.checked);
-  };
+
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
   };
+
   const handleLogOut = () => {
     logOut();
     navigate("/");
   };
+
+  // Todo: load data from server to dynamic admin
+  const isAdmin = true;
+  const isUser = false;
+  const isInstructor = false;
+
   return (
     <>
       {/* Small Screen Navbar */}
-      <div className="bg-gray-100 text-gray-800 flex justify-between md:hidden">
+      <div className="bg-orange-100 text-gray-800 flex justify-between md:hidden">
         <div>
           <div className="block cursor-pointer p-4 font-bold"></div>
         </div>
@@ -83,11 +96,37 @@ const Sidebar = () => {
           <div className="flex flex-col justify-between flex-1 mt-6">
             <nav>
               <>
-                <label
-                  htmlFor="Toggle3"
-                  className="inline-flex w-full justify-center items-center px-2 rounded-md cursor-pointer text-gray-800"
-                ></label>
-                {/* Menu Links */}
+                {
+                  isAdmin && <>
+                  {/* Menu link Admin */}
+                <NavLink
+                  to="/dashboard/manageClasses"
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <MdManageAccounts className="w-5 h-5" />
+                  <span className="mx-4 font-medium">Manage Classes</span>
+                </NavLink>
+                <NavLink
+                  to="/dashboard/manageUsers"
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <FaUsers className="w-5 h-5" />
+                  <span className="mx-4 font-medium">Manage Users</span>
+                </NavLink>
+                  </>
+                }
+                {
+                  isInstructor && <>
+                    
+                {/* Menu Links instructor */}
                 <NavLink
                   to="/dashboard/addClass"
                   className={({ isActive }) =>
@@ -96,17 +135,96 @@ const Sidebar = () => {
                     }`
                   }
                 >
-                  {/* <BsFillHouseAddFill className="w-5 h-5" /> */}
-
+                  <BsFillHouseAddFill className="w-5 h-5" />
                   <span className="mx-4 font-medium">Add Class</span>
                 </NavLink>
+                <NavLink
+                  to="/dashboard/myClasses"
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <SiBookstack className="w-5 h-5" />
+                  <span className="mx-4 font-medium">My Classes</span>
+                </NavLink>
+                  </>
+                }
+                {
+                  isUser && <>
+                    {/* Menu link user */}
+                <NavLink
+                  to="/dashboard/enrolledClass"
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <GiEntryDoor className="w-5 h-5" />
+                  <span className="mx-4 font-medium">Enrolled Class</span>
+                </NavLink>
+                <NavLink
+                  to="/dashboard/selectedClass"
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <AiOutlineSelect className="w-5 h-5" />
+                  <span className="mx-4 font-medium">Selected Class</span>
+                </NavLink>
+                <NavLink
+                  to="/dashboard/paymentHistory"
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <BsFillCreditCardFill className="w-5 h-5" />
+                  <span className="mx-4 font-medium">Payment History</span>
+                </NavLink>
+                  </>
+                }
+                  
+                
               </>
             </nav>
           </div>
         </div>
-
+        {/* Main Content Menu */}
+        <div className="divider"></div>
         <div>
-          <hr />
+        <NavLink
+                  to="/"
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <AiFillHome className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">Home</span>
+                </NavLink>
+        <NavLink
+                  to="/classes"
+                  className={({ isActive }) =>
+                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                    }`
+                  }
+                >
+                  <ImBooks className="w-5 h-5" />
+
+                  <span className="mx-4 font-medium">All Classes</span>
+                </NavLink>
+        </div>
+        <div>
+        <div className="divider"></div>
           <button
             onClick={handleLogOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"

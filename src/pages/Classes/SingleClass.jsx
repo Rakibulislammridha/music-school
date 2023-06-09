@@ -24,7 +24,7 @@ const SingleClass = ({ singleSubject }) => {
           <div className="card-body items-left text-left">
             <h2 className="card-title">Subject: {subject}</h2>
               <span className="font-bold">Instructor:
-              {singleSubject.instructor.instructor}
+                {singleSubject.instructor.instructor}
               </span>
             <div className="font-bold">
               <span className="flex gap-[4px]">

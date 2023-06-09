@@ -32,7 +32,7 @@ const Login = () => {
             icon: 'success',
             title: 'Login Successful',
             showConfirmButton: false,
-            timer: 1500
+            timer: 1500,
           })
           navigate(from, {replace: true})
           setLoading(false)
@@ -54,8 +54,8 @@ const Login = () => {
     signInWithGoogle()
     .then(result =>{
         console.log(result.user);
-        //   Save user to database : Todo
-        saveUser(result?.user)
+        //   Save user to database 
+        saveUser( result.user)
         navigate(from, {replace: true})
     })
     .catch(error =>{
