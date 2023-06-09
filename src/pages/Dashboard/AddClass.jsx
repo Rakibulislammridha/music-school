@@ -1,12 +1,16 @@
 import React, { useContext, useState } from 'react';
 import AddClassForm from '../../components/Form/AddClassForm';
 import { AuthContext } from '../../providers/AuthProviders';
+import { uploadImage } from '../../api/uploadImage';
+import { addSubject } from '../../api/subjects';
 
 const AddClass = () => {
 
-    const {user, loading, setLoading} = useContext(AuthContext)
+    const {user} = useContext(AuthContext)
 
-    const [uploadImageName, setUploadImageName] = useState("Upload Image")
+    const [uploadImageName, setUploadImageName] = useState("Upload Image");
+
+    const [loading, setLoading] = useState(false);
 
     const handleSubmit = (event) =>{
         event.preventDefault();
@@ -21,7 +25,36 @@ const AddClass = () => {
 
         const image = event.target.image.files[0];
 
-        console.log(subject, instructor, email, price, availableSits, description, image);
+        // upload image
+        uploadImage(image)
+        .then(data => {
+            const classData = {
+                image: data.data.display_url,
+                subject,
+                instructor:{
+                    instructor,
+                    email,
+                },
+                price,
+                availableSits,
+                description,
+            }
+
+            addSubject(classData)
+            .then(data =>{
+                console.log(data);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+
+            setLoading(false)
+        })
+        .catch(err => {
+            console.log(err);
+            setLoading(false)
+        })
+
     }
 
     const handleImageChange = (image) =>{

@@ -43,7 +43,9 @@ import AddClass from "../pages/Dashboard/AddClass";
     },
     {
       path: "/dashboard",
-      element: <DashboardLayout></DashboardLayout>,
+      element: <PrivateRoute>
+        <DashboardLayout></DashboardLayout>
+      </PrivateRoute>,
       children: [
         {
           path: "/dashboard/addClass",

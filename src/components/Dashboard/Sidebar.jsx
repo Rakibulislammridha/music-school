@@ -1,9 +1,8 @@
 import React, { useContext, useState } from "react";
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { GrLogout } from "react-icons/gr";
-import { FcSettings } from "react-icons/fc";
 import { AiOutlineBars } from "react-icons/ai";
-import { BsFillHouseAddFill } from "react-icons/bs";
+// import { BsFillHouseAddFill } from "react-icons/bs";
 import { AuthContext } from "../../providers/AuthProviders";
 import websiteLogo from "../../assets/musicSchoolLogo.jpg";
 const Sidebar = () => {
@@ -97,7 +96,7 @@ const Sidebar = () => {
                     }`
                   }
                 >
-                  <BsFillHouseAddFill className="w-5 h-5" />
+                  {/* <BsFillHouseAddFill className="w-5 h-5" /> */}
 
                   <span className="mx-4 font-medium">Add Class</span>
                 </NavLink>

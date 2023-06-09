@@ -25,7 +25,7 @@ const Navbar = () => {
         <Link to="/classes">Classes</Link>
       </li>
       {user && <li>
-        <Link to="/">Dashboard</Link>
+        <Link to="/dashboard">Dashboard</Link>
       </li>}
     </>
   );
