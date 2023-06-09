@@ -5,8 +5,6 @@ import { subjects } from "../Categories/categoriesData";
 const AddClassForm = ({
   handleSubmit,
   user,
-  dates,
-  handleDates,
   loading = false,
   handleImageChange,
   uploadImageName,
@@ -102,6 +100,19 @@ const AddClassForm = ({
               id="availableSits"
               type="number"
               placeholder="Available Sits"
+              required
+            />
+          </div>
+          <div className="space-y-1 text-sm">
+            <label htmlFor="availableSits" className="block text-gray-600">
+              Enrolled Students
+            </label>
+            <input
+              className="w-full px-4 py-3 text-gray-800 border border-orange-300 focus:outline-orange-500 rounded-md "
+              name="enrolledStudents"
+              id="enrolledStudents"
+              type="number"
+              placeholder="Enrolled Students"
               required
             />
           </div>

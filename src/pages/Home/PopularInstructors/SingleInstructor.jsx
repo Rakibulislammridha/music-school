@@ -3,7 +3,6 @@ import { FcMusic } from "react-icons/fc";
 
 const SingleInstructor = ({ singleInstructor }) => {
   
-    console.log(singleInstructor);
     const {instructorImage, instructor, instructorDescription, enrolledStudent, } = singleInstructor
 
   return (

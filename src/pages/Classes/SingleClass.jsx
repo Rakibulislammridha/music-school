@@ -1,10 +1,10 @@
 import React from "react";
 import { Helmet } from "react-helmet-async";
-import Title from "../../components/Title/Title";
 
 const SingleClass = ({ singleSubject }) => {
+  console.log(singleSubject);
 
-    const {image, subject, price, availableSits } = singleSubject;
+    const {image, subject, price, availableSits, enrolledStudents } = singleSubject;
 
   return (
     <div className="">
@@ -22,18 +22,18 @@ const SingleClass = ({ singleSubject }) => {
             />
           </figure>
           <div className="card-body items-left text-left">
-            <h2 className="card-title">Subject: {subject}</h2>
-              <span className="font-bold">Instructor:
-                {singleSubject.instructor.instructor}
+            <h2 className="card-title font-bold">Subject: {subject}.</h2>
+              <span className="font-semibold">Instructor:
+                <span className="ml-2">{singleSubject.instructor.instructor}.</span>
               </span>
-            <div className="font-bold">
-              <span className="flex gap-[4px]">
-                Enrolled Student:{" "}
-                <div className="mt-[6px]">
-                  {/* <FcMusic></FcMusic> */}
-                </div>{" "}
-                {availableSits}
-              </span>
+            <div className="font-semibold">
+            Available Sits:<span className=""> {availableSits}</span>
+            </div>
+            <div className="font-semibold">
+            Enrolled Student:<span className=""> {enrolledStudents}</span>
+            </div>
+            <div className="font-semibold">
+            Class Cost:<span className=""> ${price}</span>
             </div>
             <button className="btn bg-orange-600 text-white hover:bg-orange-400">Select Subject</button>
           </div>

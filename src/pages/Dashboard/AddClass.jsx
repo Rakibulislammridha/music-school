@@ -3,6 +3,7 @@ import AddClassForm from '../../components/Form/AddClassForm';
 import { AuthContext } from '../../providers/AuthProviders';
 import { uploadImage } from '../../api/uploadImage';
 import { addSubject } from '../../api/subjects';
+import Swal from 'sweetalert2';
 
 const AddClass = () => {
 
@@ -21,6 +22,7 @@ const AddClass = () => {
         const email = form.email.value;
         const price = form.price.value;
         const availableSits = form.availableSits.value;
+        const enrolledStudents = form.enrolledStudents.value;
         const description = form.description.value;
 
         const image = event.target.image.files[0];
@@ -38,11 +40,19 @@ const AddClass = () => {
                 price,
                 availableSits,
                 description,
+                enrolledStudents,
             }
 
             addSubject(classData)
             .then(data =>{
                 console.log(data);
+                Swal.fire({
+                    position: "top-center",
+                    icon: "success",
+                    title: "Class Added successfully !",
+                    showConfirmButton: false,
+                    timer: 1500,
+                  });
             })
             .catch(err => {
                 console.log(err);

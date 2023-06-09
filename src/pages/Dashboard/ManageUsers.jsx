@@ -63,7 +63,7 @@ const ManageUsers = () => {
       </Helmet>
       <Title subHeading={"There Is Our"} heading={"All Users"}></Title>
       <div className="">
-        <h3 className="text-4xl text-center">Total Users: {users.length}</h3>
+        <h3 className="text-4xl text-center font-bold mb-4 underline">Total Users: {users.length}</h3>
       </div>
 
       <div className="overflow-x-auto">
@@ -118,13 +118,13 @@ const ManageUsers = () => {
                     </>
                   )}
                   <>
-                    <button
+                    { user.role !== "admin" && user.role !== "instructor" && <button
                       onClick={() => handleMakeInstructor(user)}
                       className="btn btn-sm bg-orange-600 hover:bg-orange-400 text-white"
                     >
                       <FaUser></FaUser>
                       User
-                    </button>
+                    </button>}
                   </>
                 </td>
               </tr>

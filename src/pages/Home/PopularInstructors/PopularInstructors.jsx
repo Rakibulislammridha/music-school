@@ -12,7 +12,6 @@ const PopularInstructors = () => {
       .then((data) => {
         const popularInstructors = data.filter((instructor) => instructor.enrolledStudent > 100)
         setInstructors(popularInstructors);
-        console.log(popularInstructors);
       });
   }, []);
 

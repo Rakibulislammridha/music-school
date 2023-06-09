@@ -16,7 +16,7 @@ import websiteLogo from "../../assets/musicSchoolLogo.jpg";
 const Sidebar = () => {
   const navigate = useNavigate();
 
-  const { user, logOut } = useContext(AuthContext);
+  const { user, logOut, role } = useContext(AuthContext);
 
   const [isActive, setActive] = useState("false");
 
@@ -29,11 +29,6 @@ const Sidebar = () => {
     logOut();
     navigate("/");
   };
-
-  // Todo: load data from server to dynamic admin
-  const isAdmin = true;
-  const isUser = false;
-  const isInstructor = false;
 
   return (
     <>
@@ -97,7 +92,7 @@ const Sidebar = () => {
             <nav>
               <>
                 {
-                  isAdmin && <>
+                  role === "admin" && <>
                   {/* Menu link Admin */}
                 <NavLink
                   to="/dashboard/manageClasses"
@@ -124,7 +119,7 @@ const Sidebar = () => {
                   </>
                 }
                 {
-                  isInstructor && <>
+                  role === "instructor" && <>
                     
                 {/* Menu Links instructor */}
                 <NavLink
@@ -152,7 +147,7 @@ const Sidebar = () => {
                   </>
                 }
                 {
-                  isUser && <>
+                  role !== "admin" && role !== "instructor" && <>
                     {/* Menu link user */}
                 <NavLink
                   to="/dashboard/enrolledClass"
