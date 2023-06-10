@@ -12,6 +12,11 @@ import DashboardLayout from "../layout/DashboardLayout";
 import AddClass from "../pages/Dashboard/AddClass";
 import MyClasses from "../pages/Dashboard/MyClasses";
 import ManageUsers from "../pages/Dashboard/ManageUsers";
+import SelectedClass from "../pages/Dashboard/SelectedClass";
+import PaymentPage from "../pages/Dashboard/PaymentPage";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory";
+import EnrolledClass from "../pages/Dashboard/EnrolledClass";
+import ManageClasses from "../pages/Dashboard/ManageClasses";
 
 
  export const router = createBrowserRouter([
@@ -58,6 +63,26 @@ import ManageUsers from "../pages/Dashboard/ManageUsers";
         {
           path: "/dashboard/manageUsers",
           element: <ManageUsers></ManageUsers>
+        },
+        {
+          path: "/dashboard/selectedClass",
+          element: <SelectedClass></SelectedClass>
+        },
+        {
+          path: "/dashboard/paymentPage",
+          element: <PaymentPage></PaymentPage>
+        },
+        {
+          path: "/dashboard/paymentHistory",
+          element: <PaymentHistory></PaymentHistory>
+        },
+        {
+          path: "/dashboard/enrolledClass",
+          element: <EnrolledClass></EnrolledClass>
+        },
+        {
+          path: "/dashboard/manageClasses",
+          element: <ManageClasses></ManageClasses>
         }
       ]
     }

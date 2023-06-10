@@ -4,14 +4,15 @@ import { useQuery } from "@tanstack/react-query";
 
 const useSubject = () =>{
  const {user} = useContext(AuthContext);
- const {isLoading, refetch, data: subject = []} = useQuery({
+ 
+ const {refetch, data: subject = []} = useQuery({
     queryKey: ["selectedSubjects", user?.email],
     queryFn: async () =>{
         const response = await fetch(`${import.meta.env.VITE_API_URL}/selectedSubjects?email=${user?.email}`)
         return response.json();
     }
  })
- return [subject, isLoading, refetch];
+ return [subject, refetch];
 }
 
 export default useSubject;

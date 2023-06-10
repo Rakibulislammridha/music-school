@@ -5,6 +5,7 @@ import Title from "../../components/Title/Title";
 
 const MyClasses = () => {
   const { user } = useContext(AuthContext);
+  console.log(user);
 
   const [myClasses, setMyClasses] = useState([]);
 
@@ -63,7 +64,9 @@ const MyClasses = () => {
                        Need: {classItem.availableSits} Students
                     </td>
                     <th>
-                      <button className="btn btn-ghost btn-xs">Pending</button>
+                      {
+                        classItem.status === "approved" ? <button className="btn bg-green-600 hover:bg-green-500 text-white btn-xs">{classItem.status}</button> : <button className="btn bg-orange-600 hover:bg-orange-500 text-white btn-xs">{classItem.status}</button>
+                      }
                     </th>
                   </tr> )
             }

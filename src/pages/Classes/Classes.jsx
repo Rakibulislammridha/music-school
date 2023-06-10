@@ -13,8 +13,10 @@ const Classes = () => {
     useEffect(()=>{
         getAllClasses()
         .then(data =>{
-            setSubjects(data);
+            const approvedClasses = data.filter(approved => approved.status === "approved")
+            setSubjects(approvedClasses);
             setLoading(false);
+            console.log(approvedClasses);
         })
     }, [])
 
