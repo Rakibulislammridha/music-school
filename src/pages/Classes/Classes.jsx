@@ -13,7 +13,6 @@ const Classes = () => {
     useEffect(()=>{
         getAllClasses()
         .then(data =>{
-            console.log(data);
             setSubjects(data);
             setLoading(false);
         })

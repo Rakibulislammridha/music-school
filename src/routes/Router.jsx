@@ -29,9 +29,7 @@ import ManageUsers from "../pages/Dashboard/ManageUsers";
         },
         {
           path: "classes",
-          element: <PrivateRoute>
-            <Classes></Classes>
-          </PrivateRoute>
+          element: <Classes></Classes>
         },
         {
           path: "login",
