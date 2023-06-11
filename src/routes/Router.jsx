@@ -37,11 +37,11 @@ import ManageClasses from "../pages/Dashboard/ManageClasses";
           element: <Classes></Classes>
         },
         {
-          path: "login",
+          path: "/login",
           element: <Login></Login>
         },
         {
-          path: "signUp",
+          path: "/signUp",
           element: <SignUp></SignUp>
         }
       ]
@@ -83,7 +83,7 @@ import ManageClasses from "../pages/Dashboard/ManageClasses";
         {
           path: "/dashboard/manageClasses",
           element: <ManageClasses></ManageClasses>
-        }
+        },
       ]
     }
   ]);

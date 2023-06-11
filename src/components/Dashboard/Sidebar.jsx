@@ -13,12 +13,18 @@ import { ImBooks } from "react-icons/im";
 import { FaUsers } from "react-icons/fa";
 import { AuthContext } from "../../providers/AuthProviders";
 import websiteLogo from "../../assets/musicSchoolLogo.jpg";
+import useAdmin from "../../hooks/useAdmin";
+import useInstructor from "../../hooks/useInstructor";
 const Sidebar = () => {
   const navigate = useNavigate();
 
   const { user, logOut, role } = useContext(AuthContext);
 
   const [isActive, setActive] = useState("false");
+
+  const [isAdmin] = useAdmin();
+
+  const [isInstructor] = useInstructor();
 
   // Sidebar Responsive Handler
   const handleToggle = () => {
@@ -54,18 +60,6 @@ const Sidebar = () => {
         <div>
           {/* Branding & Profile Info */}
           <div>
-            <div className="hidden md:flex flex-col py-2 justify-center items-center mx-auto">
-              <Link to="/">
-                <img
-                  className="w-20 rounded-xl h-20 ml-[15px]"
-                  src={websiteLogo}
-                  alt=""
-                />
-                <span className="text-xl font-semibold text-orange-600">
-                  Music School
-                </span>
-              </Link>
-            </div>
             <div className="flex flex-col items-center mt-6 -mx-2">
               <Link to="/dashboard">
                 <img
@@ -92,7 +86,7 @@ const Sidebar = () => {
             <nav>
               <>
                 {
-                  role === "admin" && <>
+                  isAdmin && <>
                   {/* Menu link Admin */}
                 <NavLink
                   to="/dashboard/manageClasses"
@@ -119,8 +113,7 @@ const Sidebar = () => {
                   </>
                 }
                 {
-                  role === "instructor" && <>
-                    
+                  isInstructor && <>
                 {/* Menu Links instructor */}
                 <NavLink
                   to="/dashboard/addClass"
@@ -144,48 +137,47 @@ const Sidebar = () => {
                   <SiBookstack className="w-5 h-5" />
                   <span className="mx-4 font-medium">My Classes</span>
                 </NavLink>
-                  </>
+                  </> 
                 }
-                {
-                  role !== "admin" && role !== "instructor" && <>
-                    {/* Menu link user */}
-                <NavLink
-                  to="/dashboard/enrolledClass"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <GiEntryDoor className="w-5 h-5" />
-                  <span className="mx-4 font-medium">Enrolled Class</span>
-                </NavLink>
-                <NavLink
-                  to="/dashboard/selectedClass"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <AiOutlineSelect className="w-5 h-5" />
-                  <span className="mx-4 font-medium">Selected Class</span>
-                </NavLink>
-                <NavLink
-                  to="/dashboard/paymentHistory"
-                  className={({ isActive }) =>
-                    `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
-                      isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
-                    }`
-                  }
-                >
-                  <BsFillCreditCardFill className="w-5 h-5" />
-                  <span className="mx-4 font-medium">Payment History</span>
-                </NavLink>
-                  </>
-                }
-                  
                 
+                {
+                  !isAdmin && !isInstructor &&  <>
+                  {/* Menu link user */}
+              <NavLink
+                to="/dashboard/enrolledClass"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+                <GiEntryDoor className="w-5 h-5" />
+                <span className="mx-4 font-medium">Enrolled Class</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/selectedClass"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+                <AiOutlineSelect className="w-5 h-5" />
+                <span className="mx-4 font-medium">Selected Class</span>
+              </NavLink>
+              <NavLink
+                to="/dashboard/paymentHistory"
+                className={({ isActive }) =>
+                  `flex items-center px-4 py-2 mt-5  transition-colors duration-300 transform  hover:bg-gray-300   hover:text-gray-700 ${
+                    isActive ? "bg-gray-300  text-gray-700" : "text-gray-600"
+                  }`
+                }
+              >
+                <BsFillCreditCardFill className="w-5 h-5" />
+                <span className="mx-4 font-medium">Payment History</span>
+              </NavLink>
+                </>
+                }
               </>
             </nav>
           </div>
@@ -222,7 +214,7 @@ const Sidebar = () => {
         <div className="divider"></div>
           <button
             onClick={handleLogOut}
-            className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
+            className="flex w-full items-center px-4 py-2 mt-2 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
           >
             <GrLogout className="w-5 h-5" />
 

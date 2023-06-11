@@ -1,15 +1,19 @@
-import { useContext } from "react";
-import { AuthContext } from "../providers/AuthProviders";
 import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "./useAxiosSecure";
+import useAuth from "./useAuth";
 
 const useSubject = () =>{
- const {user} = useContext(AuthContext);
+ const {user, loading} = useAuth();
+
+ const [axiosSecure] = useAxiosSecure();
  
  const {refetch, data: subject = []} = useQuery({
     queryKey: ["selectedSubjects", user?.email],
+    enabled: !loading,
     queryFn: async () =>{
-        const response = await fetch(`${import.meta.env.VITE_API_URL}/selectedSubjects?email=${user?.email}`)
-        return response.json();
+        const response = await axiosSecure(`/selectedSubjects?email=${user?.email}`)
+        console.log("response axios", response);
+        return response.data;
     }
  })
  return [subject, refetch];

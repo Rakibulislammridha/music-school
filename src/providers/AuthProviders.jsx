@@ -6,6 +6,7 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword,
     updateProfile } from "firebase/auth";
 import app from '../firebase/firebase.config';
 import { getRole } from '../api/auth';
+import axios from 'axios';
 
 export const AuthContext = createContext(null);
 
@@ -60,6 +61,18 @@ const AuthProviders = ({children}) => {
      const unsubscribe = onAuthStateChanged(auth, currentUser =>{
         setUser(currentUser)
         console.log(currentUser);
+
+        // get jwt token and set it
+        if(currentUser){
+            axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {email: currentUser?.email})
+            .then(data => {
+                localStorage.setItem("access-token", data.data.token)
+                setLoading(false);
+            })
+        }
+        else{
+           localStorage.removeItem("access-token") 
+        }
         setLoading(false);
      })
      return () => {

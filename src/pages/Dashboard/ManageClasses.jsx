@@ -3,6 +3,7 @@ import useAllSubjects from "../../hooks/useAllSubjects";
 import { Helmet } from "react-helmet-async";
 import Title from "../../components/Title/Title";
 import Swal from "sweetalert2";
+import { Link } from "react-router-dom";
 
 const ManageClasses = () => {
   const [ subjects] = useAllSubjects();
@@ -46,6 +47,7 @@ const ManageClasses = () => {
                 <th>Instructors email</th>
                 <th>Class Name</th>
                 <th>Status</th>
+                <th>Deny Class</th>
               </tr>
             </thead>
             <tbody>
@@ -63,6 +65,9 @@ const ManageClasses = () => {
                            Pending
                         </button>
                         }
+                    </td>
+                    <td>
+                    <button className="btn btn-sm bg-orange-600 hover:bg-orange-500 text-white">Cancel Request</button>
                     </td>
                   </tr>)
               }

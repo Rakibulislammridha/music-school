@@ -1,20 +1,19 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Title from "../../components/Title/Title";
 import { Helmet } from "react-helmet-async";
 import { FaUser, FaUserGraduate, FaUserTie } from "react-icons/fa";
 import Swal from "sweetalert2";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const ManageUsers = () => {
-  const [users, setUsers] = useState([]);
 
-  useEffect(() => {
-    fetch("http://localhost:3000/users")
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setUsers(data);
-      });
-  }, []);
+  const [axiosSecure] = useAxiosSecure();
+
+  const {data: users = [], refetch} = useQuery(["users"], async () =>{
+    const res = await axiosSecure.get(`/users`)
+    return res.data;
+  })
 
   //   Make admin from instructor
   const handleMakeAdmin = (user) => {
@@ -25,6 +24,7 @@ const ManageUsers = () => {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount) {
+          refetch();
           Swal.fire({
             position: "top-center",
             icon: "success",
