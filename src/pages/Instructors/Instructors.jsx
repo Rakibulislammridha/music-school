@@ -2,23 +2,28 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Title from "../../components/Title/Title";
 import Loader from "../Shared/Loader/Loader";
+import useAuth from "../../hooks/useAuth";
 
 const Instructors = () => {
+
+  const {user} = useAuth();
 
   const [users, setUsers] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     fetch(`${import.meta.env.VITE_API_URL}/users`)
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         const instructors = data.filter(
           (instructor) => instructor.role === "instructor"
         );
         setUsers(instructors);
-        setLoading(false)
       });
+      setLoading(false)
   }, []);
 
   if(loading){

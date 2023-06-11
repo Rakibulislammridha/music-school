@@ -17,7 +17,7 @@ const InstructorRoute = ({children}) => {
         return <Loader></Loader>
     }
 
-    if(user || isInstructor){
+    if(user && isInstructor){
         return children
     }
 

@@ -6,8 +6,8 @@ import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
 const ManageClasses = () => {
-  const [ subjects] = useAllSubjects();
-  console.log(subjects);
+  
+  const [ subjects, refetch] = useAllSubjects();
 
   const handleApprovedSubject = (id) =>{
     console.log(id);
@@ -18,6 +18,7 @@ const ManageClasses = () => {
     .then(data => {
         console.log(data);
         if(data.modifiedCount){
+            refetch()
             Swal.fire({
                 position: "top-center",
                 icon: "success",

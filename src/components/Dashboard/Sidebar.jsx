@@ -18,7 +18,7 @@ import useInstructor from "../../hooks/useInstructor";
 const Sidebar = () => {
   const navigate = useNavigate();
 
-  const { user, logOut, role } = useContext(AuthContext);
+  const { user, logOut } = useContext(AuthContext);
 
   const [isActive, setActive] = useState("false");
 

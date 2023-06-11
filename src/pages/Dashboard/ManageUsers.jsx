@@ -11,7 +11,7 @@ const ManageUsers = () => {
   const [axiosSecure] = useAxiosSecure();
 
   const {data: users = [], refetch} = useQuery(["users"], async () =>{
-    const res = await axiosSecure.get(`/users`)
+    const res = await axiosSecure.get("/users")
     return res.data;
   })
 
@@ -45,6 +45,7 @@ const ManageUsers = () => {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount) {
+          refetch()
           Swal.fire({
             position: "top-center",
             icon: "success",

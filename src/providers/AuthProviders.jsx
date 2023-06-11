@@ -5,8 +5,9 @@ import { GoogleAuthProvider, createUserWithEmailAndPassword,
     signOut, 
     updateProfile } from "firebase/auth";
 import app from '../firebase/firebase.config';
-import { getRole } from '../api/auth';
+// import { getRole } from '../api/auth';
 import axios from 'axios';
+import { getRole } from '../api/auth';
 
 export const AuthContext = createContext(null);
 
@@ -24,11 +25,18 @@ const AuthProviders = ({children}) => {
     const [loading, setLoading] = useState(true);
 
     useEffect(()=>{
-        if(user){
-            getRole(user.email)
+        // if(user){
+        //     fetch(`${import.meta.env.VITE_API_URL}/users/${user?.email}`)
+        // .then(res => res.json())
+        // .then(data => {
+        //     setRole(data)
+        // })
+        // }
+        if(user?.email){
+            getRole(user?.email)
             .then(data => setRole(data))
         }
-    }, [user])
+    }, [user?.email])
 
     const createUser = (email, password) =>{
         setLoading(true)
@@ -67,7 +75,7 @@ const AuthProviders = ({children}) => {
             axios.post(`${import.meta.env.VITE_API_URL}/jwt`, {email: currentUser?.email})
             .then(data => {
                 localStorage.setItem("access-token", data.data.token)
-                setLoading(false);
+                
             })
         }
         else{
