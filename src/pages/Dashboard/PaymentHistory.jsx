@@ -9,7 +9,7 @@ const PaymentHistory = () => {
   const [paidClasses, setPaidClasses] = useState([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/payments/${user.email}`)
+    fetch(`${import.meta.env.VITE_API_URL}/payments/${user?.email}?sort=date`)
       .then((res) => res.json())
       .then((data) => {
         setPaidClasses(data);

@@ -36,7 +36,9 @@ const Navbar = () => {
         <Link to="/classes">Classes</Link>
       </li>
       {user && <li>
-        <Link to="/dashboard">Dashboard</Link>
+        { user.role === "admin" && <Link to="/dashboard/manageUsers">Dashboard</Link>}
+        {user.role === "instructor" && <Link to="/dashboard/myClasses">Dashboard</Link>}
+        {user.role !== "admin" && user.role !== "instructor" && <Link to="/dashboard/selectedClass">Dashboard</Link>}
       </li>}
     </>
   );

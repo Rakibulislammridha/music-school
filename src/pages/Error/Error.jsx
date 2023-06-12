@@ -10,10 +10,10 @@ const ErrorPage = () => {
                 subHeading={"You Got An "}
                 heading={"Error !"}
             ></Title>
-            <img className='ml-[400px] mt-[90px] w-[500px] h-[500px]' src={errorCover} alt="" />
+            <img className='ml-[400px] mt-[40px] w-[500px] h-[500px]' src={errorCover} alt="" />
             <h2 className='text-5xl font-bold'>404 Page Not Found</h2>
             <Link to="/">
-            <button className='btn bg-orange-600 text-white hover:bg-orange-500 w-3/12 mt-10'>Back To Home</button>
+            <button className='btn mb-10 bg-orange-600 text-white hover:bg-orange-500 w-3/12 mt-10'>Back To Home</button>
             </Link>
         </div>
     );

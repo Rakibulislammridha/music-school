@@ -13,7 +13,7 @@ const FeedbackModal = ({ closeModal, isOpen, id, refetch}) => {
     
         console.log(feedback);
 
-        fetch(`http://localhost:3000/subjects/reject/${id}`, {
+        fetch(`https://learn-music-server.vercel.app/subjects/reject/${id}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"

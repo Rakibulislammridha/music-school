@@ -4,6 +4,7 @@ import { AuthContext } from "../../providers/AuthProviders";
 import Swal from "sweetalert2";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ImSpinner10 } from "react-icons/im";
+import { useEffect } from "react";
 
 const SingleClass = ({ singleSubject }) => {
 
@@ -11,11 +12,23 @@ const SingleClass = ({ singleSubject }) => {
 
     const [loading, setLoading] = useState(false)
 
+    const [enrolledClass, setEnrolledClass] = useState([])
+
     const {user} = useContext(AuthContext)
 
     const navigate = useNavigate();
 
     const location = useLocation();
+
+    useEffect(() =>{
+      if(user){
+        fetch(`${import.meta.env.VITE_API_URL}/payments/${user?.email}`)
+      .then(res => res.json())
+      .then((subject) => {
+        setEnrolledClass(subject);
+      })
+      }
+    }, [user])
 
     const handleSelectedSubject = (singleSubject) =>{
       setLoading(true);
@@ -102,13 +115,14 @@ const SingleClass = ({ singleSubject }) => {
             <div className="font-semibold">
             Class Cost:<span className=""> ${price}</span>
             </div>
-            { availableSits === 0 && <button  disabled={true}
+            <button
+            disabled={enrolledClass.some((item) => item.subjectId === _id)}
              onClick={()=>handleSelectedSubject(singleSubject)}
              className="btn bg-orange-600 text-white hover:bg-orange-400">{loading ? (
               <ImSpinner10 className="m-auto animate-spin" size={24} />
             ) : (
               "Add Class"
-            )}</button>}
+            )}</button>
           </div>
         </div>
       </div>
