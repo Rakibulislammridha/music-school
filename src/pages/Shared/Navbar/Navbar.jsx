@@ -1,9 +1,21 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import navLogo from "../../../assets/musicSchoolLogo.jpg";
 import { AuthContext } from "../../../providers/AuthProviders";
+import DarkModeToggle from "react-dark-mode-toggle";
+import { useState } from "react";
 
 const Navbar = () => {
+
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.body.classList.add('dark-mode');
+    } else {
+      document.body.classList.remove('dark-mode');
+    }
+  }, [isDarkMode]);
 
   const {user, logOut} = useContext(AuthContext);
   const handleLogout = () =>{
@@ -69,6 +81,7 @@ const Navbar = () => {
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1 font-semibold">{navOptions}</ul>
         </div>
+
         <div className="navbar-end">
           {
             user && <>
@@ -84,6 +97,11 @@ const Navbar = () => {
           </Link>
             </>
           }
+          <DarkModeToggle
+      onChange={setIsDarkMode}
+      checked={isDarkMode}
+      size={80}
+    />
         </div>
       </div>
     </>

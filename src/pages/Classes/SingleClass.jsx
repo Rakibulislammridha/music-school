@@ -102,13 +102,13 @@ const SingleClass = ({ singleSubject }) => {
             <div className="font-semibold">
             Class Cost:<span className=""> ${price}</span>
             </div>
-            <button 
+            { availableSits === 0 && <button  disabled={true}
              onClick={()=>handleSelectedSubject(singleSubject)}
              className="btn bg-orange-600 text-white hover:bg-orange-400">{loading ? (
               <ImSpinner10 className="m-auto animate-spin" size={24} />
             ) : (
               "Add Class"
-            )}</button>
+            )}</button>}
           </div>
         </div>
       </div>

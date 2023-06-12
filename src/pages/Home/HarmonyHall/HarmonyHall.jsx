@@ -3,6 +3,7 @@ import harmonyHall from "../../../assets/harmonyHall.jpg"
 import {FaEdit} from "react-icons/fa"
 import Button from "../../../components/Buttons/Button";
 import Title from "../../../components/Title/Title";
+import { Fade } from "react-awesome-reveal";
 
 const HarmonyHall = () => {
   return (
@@ -11,6 +12,7 @@ const HarmonyHall = () => {
           subHeading={"welcome To"}
           heading={"Harmony Hall"}
         ></Title>
+      <Fade>
       <div className="hero my-20">
         <div className="hero-content flex-col lg:flex-row-reverse">
           <img
@@ -32,6 +34,7 @@ const HarmonyHall = () => {
           </div>
         </div>
       </div>
+      </Fade>
     </div>
   );
 };

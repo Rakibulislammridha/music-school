@@ -3,13 +3,15 @@ import axios from "axios";
 import useAuth from "./useAuth";
 import { useEffect } from "react";
 
+const axiosSecure = axios.create({
+    baseURL: "http://localhost:3000"
+})
+
 const useAxiosSecure = () =>{
-    const {logOut} = useAuth();
-    const navigate = useNavigate();
     
-    const axiosSecure = axios.create({
-        baseURL: "http://localhost:3000"
-    })
+    const {logOut} = useAuth();
+
+    const navigate = useNavigate();
 
     useEffect(()=>{
         axiosSecure.interceptors.request.use((config) => {

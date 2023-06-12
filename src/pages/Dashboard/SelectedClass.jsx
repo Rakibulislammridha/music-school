@@ -9,7 +9,6 @@ import { Link } from 'react-router-dom';
 const SelectedClass = () => {
 
     const [subject, refetch] = useSubject()
-    console.log(subject);
 
     const handleDelete = (id) =>{
         console.log(id);
@@ -99,7 +98,7 @@ const SelectedClass = () => {
             </button>
         </td>
         <td>
-          <Link to="/dashboard/paymentPage">
+          <Link to={`/dashboard/paymentPage/${sub._id}`}>
           <button className="btn bg-orange-600 hover:bg-orange-400 text-white btn-sm">Enrol Now !</button>
           </Link>
         </td>

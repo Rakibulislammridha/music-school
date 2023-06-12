@@ -3,10 +3,12 @@ import banner2 from "../../../assets/banner2.jpg";
 import banner3 from "../../../assets/banner3.jpg";
 import banner4 from "../../../assets/banner4.jpg";
 import banner6 from "../../../assets/banner6.jpg";
+import { Fade } from "react-awesome-reveal";
 
 const Banner = () => {
   return (
     <section>
+      <Fade>
       <div className="carousel w-full h-[600px]">
       <div id="slide1" className="carousel-item w-full relative">
           <img src={banner2} className="w-full" />
@@ -80,6 +82,7 @@ const Banner = () => {
           </div>
         </div>
       </div>
+      </Fade>
     </section>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import { Fade } from "react-awesome-reveal";
 import { FcMusic } from "react-icons/fc";
 
 const SingleInstructor = ({ singleInstructor }) => {
@@ -7,6 +8,7 @@ const SingleInstructor = ({ singleInstructor }) => {
 
   return (
     <div>
+      <Fade>
       <div className="card w-96 bg-base-100 shadow-2xl h-[550px] group">
         <figure className="px-10 pt-10">
           <img
@@ -33,6 +35,7 @@ const SingleInstructor = ({ singleInstructor }) => {
           </div>
         </div>
       </div>
+      </Fade>
     </div>
   );
 };

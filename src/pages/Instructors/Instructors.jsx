@@ -2,29 +2,22 @@ import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet-async";
 import Title from "../../components/Title/Title";
 import Loader from "../Shared/Loader/Loader";
-import useAuth from "../../hooks/useAuth";
 
 const Instructors = () => {
-
-  const {user} = useAuth();
-
-  const [users, setUsers] = useState([]);
+  const [instructors, setInstructors] = useState([]);
 
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    fetch(`${import.meta.env.VITE_API_URL}/users`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        const instructors = data.filter(
-          (instructor) => instructor.role === "instructor"
-        );
-        setUsers(instructors);
-      });
-      setLoading(false)
+    // setLoading(true)
+    fetch("http://localhost:3000/users/instructors")
+    .then(res => res.json())
+    .then(data => {
+      setInstructors(data); 
+    })
   }, []);
+
+  // const [instructors, loading] = useAllInstructors();
 
   if(loading){
     return <Loader></Loader>
@@ -50,7 +43,7 @@ const Instructors = () => {
               </tr>
             </thead>
             <tbody>
-              {users.map((user, i) => (
+              {instructors.map((user, i) => (
                 <tr key={user._id}>
                   <th>
                     {i + 1}

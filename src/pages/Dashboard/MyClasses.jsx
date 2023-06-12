@@ -17,6 +17,8 @@ const MyClasses = () => {
       });
   }, []);
 
+  console.log(myClasses);
+
   return (
     <div>
       <Helmet>
@@ -33,6 +35,7 @@ const MyClasses = () => {
                 <th>Class Info</th>
                 <th>Enrolled Students</th>
                 <th>Available Sites</th>
+                <th>Admin Feedback</th>
                 <th>Status</th>
               </tr>
             </thead>
@@ -62,6 +65,11 @@ const MyClasses = () => {
                     </td>
                     <td>
                        Need: {classItem.availableSits} Students
+                    </td>
+                    <td>
+                       {
+                        classItem.feedback ? <span>Feedback: {classItem.feedback}</span> : <span>No Admin Feedback</span>
+                       }
                     </td>
                     <th>
                       {

@@ -1,10 +1,12 @@
 import React from "react";
+import { Fade } from "react-awesome-reveal";
 import { FcMusic } from 'react-icons/fc';
 
 const SingleClass = ({ item }) => {
    const {className,details, enrolledStudent, image } = item;
   return (
     <div className="">
+      <Fade>
       <div className="card w-96 bg-base-100 shadow-2xl h-[710px] group">
         <figure className="px-10 pt-10">
           <img
@@ -22,6 +24,7 @@ const SingleClass = ({ item }) => {
           </div>
         </div>
       </div>
+      </Fade>
     </div>
   );
 };

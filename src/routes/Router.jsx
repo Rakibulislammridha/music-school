@@ -19,12 +19,14 @@ import EnrolledClass from "../pages/Dashboard/EnrolledClass";
 import ManageClasses from "../pages/Dashboard/ManageClasses";
 import AdminRoute from "./AdminRoute";
 import InstructorRoute from "./InstructorRoute";
+import ErrorPage from "../pages/Error/Error";
 
 
  export const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <ErrorPage></ErrorPage>,
       children: [
         {
             path: "/",
@@ -55,35 +57,36 @@ import InstructorRoute from "./InstructorRoute";
       </PrivateRoute>,
       children: [
         {
-          path: "/dashboard/manageUsers",
+          path: "manageUsers",
           element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
         },
         {
-          path: "/dashboard/manageClasses",
+          path: "manageClasses",
           element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
         },
         {
-          path: "/dashboard/addClass",
+          path: "addClass",
           element: <InstructorRoute><AddClass></AddClass></InstructorRoute>
         },
         {
-          path: "/dashboard/myClasses",
+          path: "myClasses",
           element: <InstructorRoute><MyClasses></MyClasses></InstructorRoute>
         },
         {
-          path: "/dashboard/selectedClass",
+          path: "selectedClass",
           element: <SelectedClass></SelectedClass>
         },
         {
-          path: "/dashboard/paymentPage",
-          element: <PaymentPage></PaymentPage>
+          path: "paymentPage/:id",
+          element: <PaymentPage></PaymentPage>,
+          loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/selectedSubjects/${params.id}`)
         },
         {
-          path: "/dashboard/paymentHistory",
-          element: <PaymentHistory></PaymentHistory>
+          path: "paymentHistory",
+          element: <PaymentHistory></PaymentHistory>,
         },
         {
-          path: "/dashboard/enrolledClass",
+          path: "enrolledClass",
           element: <EnrolledClass></EnrolledClass>
         },
       ]

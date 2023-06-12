@@ -6,6 +6,7 @@ import HarmonyHall from '../HarmonyHall/HarmonyHall';
 import { Helmet } from 'react-helmet-async';
 
 const Home = () => {
+
     return (
         <div>
             <Helmet>
