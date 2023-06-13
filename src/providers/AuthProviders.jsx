@@ -28,7 +28,7 @@ const AuthProviders = ({children}) => {
             getRole(user?.email)
             .then(data => setRole(data))
         }
-    }, [user?.email])
+    }, [])
 
     const createUser = (email, password) =>{
         setLoading(true)

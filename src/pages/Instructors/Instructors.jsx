@@ -10,7 +10,7 @@ const Instructors = () => {
 
   useEffect(() => {
     // setLoading(true)
-    fetch("https://learn-music-server.vercel.app/users/instructors")
+    fetch("http://localhost:3000/users/instructors")
     .then(res => res.json())
     .then(data => {
       setInstructors(data); 

@@ -86,7 +86,7 @@ const CheckoutForm = ({ price, paidSubject }) => {
             date: new Date(),
             subjectId: paidSubject.subjectId,
             selectedClassId: paidSubject._id,
-            enrolledStudents: paidSubject.enrolledStudents,
+            enrolledStudents: parseInt(paidSubject.enrolledStudents) +1,
             availableSits: parseInt(paidSubject.availableSits) -1,
             transactionId: paymentIntent.id,
              price,

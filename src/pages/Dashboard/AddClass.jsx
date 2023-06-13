@@ -4,10 +4,13 @@ import { AuthContext } from '../../providers/AuthProviders';
 import { uploadImage } from '../../api/uploadImage';
 import { addSubject } from '../../api/subjects';
 import Swal from 'sweetalert2';
+import { useNavigate } from 'react-router-dom';
 
 const AddClass = () => {
 
     const {user} = useContext(AuthContext)
+
+    const navigate = useNavigate();
 
     const [uploadImageName, setUploadImageName] = useState("Upload Image");
 
@@ -53,6 +56,7 @@ const AddClass = () => {
                     showConfirmButton: false,
                     timer: 1500,
                   });
+                  navigate("/dashboard/myClasses")
             })
             .catch(err => {
                 console.log(err);

@@ -68,7 +68,7 @@ const MyClasses = () => {
                     </td>
                     <td>
                        {
-                        classItem.feedback ? <span>Feedback: {classItem.feedback}</span> : <span>No Admin Feedback</span>
+                        classItem.feedback ? <span>{classItem.feedback}</span> : <span>No Admin Feedback</span>
                        }
                     </td>
                     <th>

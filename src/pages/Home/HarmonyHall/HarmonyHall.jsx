@@ -24,7 +24,7 @@ const HarmonyHall = () => {
             <p className="py-6">
             At Harmony Hall, we believe that music has the power to breathe life into our souls and ignite our passions. Our music school is a vibrant and nurturing community where students of all ages and skill levels can come together to explore the world of music, discover their unique voices, and unleash their creative potential.
             </p>
-            <div className="w-3/12">
+            <div className="lg:w-3/12 w-full">
             <Button
             icon={FaEdit}
              label={"Enrol Now"}

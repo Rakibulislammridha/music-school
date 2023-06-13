@@ -9,6 +9,7 @@ import { Link } from 'react-router-dom';
 const SelectedClass = () => {
 
     const [subject, refetch] = useSubject()
+    console.log(subject);
 
     const handleDelete = (id) =>{
         console.log(id);
@@ -63,6 +64,8 @@ const SelectedClass = () => {
         <th>Subject Name</th>
         <th>Course Price</th>
         <th>Instructor Name</th>
+        <th>Enrolled Student</th>
+        <th>Available Sites</th>
         <th>Remove Selection</th>
         <th>Payment</th>
       </tr>
@@ -89,6 +92,12 @@ const SelectedClass = () => {
         </td>
         <td>
             {sub.instructor.instructor}
+        </td>
+        <td>
+            {sub.enrolledStudents}
+        </td>
+        <td>
+            {sub.availableSits}
         </td>
         <td>
             <button 

@@ -6,11 +6,11 @@ const PopularClasses = () => {
   const [classes, setClasses] = useState([]);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/classes`)
+    fetch(`${import.meta.env.VITE_API_URL}/popularSubjects`)
       .then((res) => res.json())
       .then((data) => {
-        const popularClasses = data.filter((course) => course.enrolledStudent > 100)
-        setClasses(popularClasses);
+        setClasses(data);
+        console.log(data);
       });
   }, []);
 

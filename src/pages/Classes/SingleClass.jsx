@@ -16,6 +16,10 @@ const SingleClass = ({ singleSubject }) => {
 
     const {user} = useContext(AuthContext)
 
+    // console.log(user);
+
+    // const user = {};
+
     const navigate = useNavigate();
 
     const location = useLocation();
@@ -28,7 +32,7 @@ const SingleClass = ({ singleSubject }) => {
         setEnrolledClass(subject);
       })
       }
-    }, [user])
+    }, [])
 
     const handleSelectedSubject = (singleSubject) =>{
       setLoading(true);
@@ -61,6 +65,7 @@ const SingleClass = ({ singleSubject }) => {
               showConfirmButton: false,
               timer: 1500,
             });
+            navigate("/dashboard/selectedClass")
             setLoading(false);
           }
         })
@@ -85,6 +90,15 @@ const SingleClass = ({ singleSubject }) => {
         })
       }
     }
+
+    // const renderAddClassButton = () => {
+    //   if (user && user.role !== "admin" && user.role !== "instructor") {
+    //     return (
+          
+    //     );
+    //   }
+    //   return null;
+    // };
 
   return (
     <div className="">
@@ -115,14 +129,18 @@ const SingleClass = ({ singleSubject }) => {
             <div className="font-semibold">
             Class Cost:<span className=""> ${price}</span>
             </div>
+            {/* {user?.role === "admin" && user?.role === "instructor" && } */}
             <button
-            disabled={enrolledClass.some((item) => item.subjectId === _id)}
-             onClick={()=>handleSelectedSubject(singleSubject)}
-             className="btn bg-orange-600 text-white hover:bg-orange-400">{loading ? (
+            disabled={ user && user.role !== "admin" && user.role !== "instructor" && enrolledClass.some((item) => item.subjectId === _id)}
+            onClick={() => handleSelectedSubject(singleSubject)}
+            className="btn bg-orange-600 text-white hover:bg-orange-400"
+          >
+            {loading ? (
               <ImSpinner10 className="m-auto animate-spin" size={24} />
             ) : (
               "Add Class"
-            )}</button>
+            )}
+          </button>
           </div>
         </div>
       </div>

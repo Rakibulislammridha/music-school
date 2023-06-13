@@ -22,6 +22,7 @@ const Login = () => {
   const from = location.state?.from?.pathname || "/";
 
   const onSubmit = (data) =>{
+    setLoading(true)
     console.log(data);
     signIn(data.email, data.password)
     .then(result => {
@@ -57,6 +58,7 @@ const Login = () => {
         //   Save user to database 
         saveUser( result.user)
         navigate(from, {replace: true})
+        setLoading(false)
     })
     .catch(error =>{
         console.log(error.message);

@@ -30,6 +30,7 @@ const PaymentHistory = () => {
             <thead>
               <tr>
                 <th>#</th>
+                <th>Class Image</th>
                 <th>Student Name</th>
                 <th>Student email</th>
                 <th>Class Name</th>
@@ -43,6 +44,14 @@ const PaymentHistory = () => {
               {paidClasses.map((paid, i) => (
                 <tr key={paid._id}>
                   <th>{i + 1}</th>
+                  <td>
+                  <div className="mask mask-squircle w-12 h-12">
+                          <img
+                            src={paid.image}
+                            alt="Avatar Tailwind CSS Component"
+                          />
+                        </div>
+                  </td>
                   <td>{paid.name}</td>
                   <td>{paid.email}</td>
                   <td>{paid.enrolledSubject}</td>

@@ -57,36 +57,36 @@ import ErrorPage from "../pages/Error/Error";
       </PrivateRoute>,
       children: [
         {
-          path: "manageUsers",
+          path: "/dashboard/manageUsers",
           element: <AdminRoute><ManageUsers></ManageUsers></AdminRoute>
         },
         {
-          path: "manageClasses",
+          path: "/dashboard/manageClasses",
           element: <AdminRoute><ManageClasses></ManageClasses></AdminRoute>
         },
         {
-          path: "addClass",
+          path: "/dashboard/addClass",
           element: <InstructorRoute><AddClass></AddClass></InstructorRoute>
         },
         {
-          path: "myClasses",
+          path: "/dashboard/myClasses",
           element: <InstructorRoute><MyClasses></MyClasses></InstructorRoute>
         },
         {
-          path: "selectedClass",
+          path: "/dashboard/selectedClass",
           element: <SelectedClass></SelectedClass>
         },
         {
-          path: "paymentPage/:id",
+          path: "/dashboard/paymentPage/:id",
           element: <PaymentPage></PaymentPage>,
           loader: ({params}) => fetch(`${import.meta.env.VITE_API_URL}/selectedSubjects/${params.id}`)
         },
         {
-          path: "paymentHistory",
+          path: "/dashboard/paymentHistory",
           element: <PaymentHistory></PaymentHistory>,
         },
         {
-          path: "enrolledClass",
+          path: "/dashboard/enrolledClass",
           element: <EnrolledClass></EnrolledClass>
         },
       ]

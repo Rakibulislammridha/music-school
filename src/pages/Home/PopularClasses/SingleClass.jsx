@@ -3,7 +3,7 @@ import { Fade } from "react-awesome-reveal";
 import { FcMusic } from 'react-icons/fc';
 
 const SingleClass = ({ item }) => {
-   const {className,details, enrolledStudent, image } = item;
+   const {subject, description, enrolledStudents, image } = item;
   return (
     <div className="">
       <Fade>
@@ -17,10 +17,10 @@ const SingleClass = ({ item }) => {
           />
         </figure>
         <div className="card-body items-left text-left">
-          <h2 className="card-title">{className}</h2>
-          <p><span className="font-bold">About Class: </span>{details}</p>
+          <h2 className="card-title">{subject}</h2>
+          <p><span className="font-bold">About Class: </span>{description}</p>
           <div className="font-bold">
-          <span className="flex gap-[4px]">Enrolled Student: <div className="mt-[6px]"><FcMusic></FcMusic></div> {enrolledStudent}</span>
+          <span className="flex gap-[4px]">Enrolled Student: <div className="mt-[6px]"><FcMusic></FcMusic></div> {enrolledStudents}</span>
           </div>
         </div>
       </div>

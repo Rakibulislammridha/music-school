@@ -4,7 +4,7 @@ import useAuth from "./useAuth";
 import { useEffect } from "react";
 
 const axiosSecure = axios.create({
-    baseURL: "https://learn-music-server.vercel.app"
+    baseURL: "http://localhost:3000"
 })
 
 const useAxiosSecure = () =>{

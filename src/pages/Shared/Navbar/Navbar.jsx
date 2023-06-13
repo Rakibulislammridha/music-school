@@ -6,23 +6,22 @@ import DarkModeToggle from "react-dark-mode-toggle";
 import { useState } from "react";
 
 const Navbar = () => {
-
   const [isDarkMode, setIsDarkMode] = useState(false);
 
   useEffect(() => {
     if (isDarkMode) {
-      document.body.classList.add('dark-mode');
+      document.body.classList.add("dark-mode");
     } else {
-      document.body.classList.remove('dark-mode');
+      document.body.classList.remove("dark-mode");
     }
   }, [isDarkMode]);
 
-  const {user, logOut} = useContext(AuthContext);
-  const handleLogout = () =>{
+  const { user, logOut } = useContext(AuthContext);
+  const handleLogout = () => {
     logOut()
-    .then(()=>{})
-    .catch(error => console.log(error))
-  }
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
 
   const navOptions = (
     <>
@@ -35,11 +34,20 @@ const Navbar = () => {
       <li>
         <Link to="/classes">Classes</Link>
       </li>
-      {user && <li>
-        { user.role === "admin" && <Link to="/dashboard/manageUsers">Dashboard</Link>}
-        {user.role === "instructor" && <Link to="/dashboard/myClasses">Dashboard</Link>}
-        {user.role !== "admin" && user.role !== "instructor" && <Link to="/dashboard/selectedClass">Dashboard</Link>}
-      </li>}
+      {user && (
+        <li>
+          {user.role === "admin" && (
+            <Link to="/dashboard/manageUsers">Dashboard</Link>
+          )}
+          {user.role === "instructor" && (
+            <Link to="/dashboard/myClasses">Dashboard</Link>
+          )}
+          <Link to="/dashboard/enrolledClass">Dashboard</Link>
+          {/* {user.role !== "admin" && user.role !== "instructor" && (
+            
+          )} */}
+        </li>
+      )}
     </>
   );
 
@@ -72,8 +80,12 @@ const Navbar = () => {
             </ul>
           </div>
           <NavLink to="/">
-            <div className="normal-case text-xl flex justify-center items-center">
-              <img className="w-[50px] rounded-md mr-2 h-[40px]" src={navLogo} alt="" />
+            <div className="normal-case text-xl flex justify-center items-center sm:flex-col">
+              <img
+                className="w-10 lg:w-[50px] rounded-md mr-2 h-[40px]"
+                src={navLogo}
+                alt=""
+              />
               <h3 className="text-orange-600 font-bold tracking-wider">
                 Music School
               </h3>
@@ -81,29 +93,45 @@ const Navbar = () => {
           </NavLink>
         </div>
         <div className="navbar-center hidden lg:flex">
-          <ul className="menu menu-horizontal px-1 font-semibold">{navOptions}</ul>
+          <ul className="menu menu-horizontal px-1 font-semibold">
+            {navOptions}
+          </ul>
         </div>
-
-        <div className="navbar-end">
-          {
-            user && <>
-             <img className="h-[40px] w-[40px] border rounded-full mr-4" src={user?.photoURL} alt="" />
+        <div className="navbar-end flex ">
+          {user && (
+            <>
+              <img
+                className="h-[40px] w-[40px] border rounded-full mr-4"
+                src={user?.photoURL}
+                alt=""
+              />
             </>
-          }
-          {
-            user ? <>
-             <button onClick={handleLogout} className="btn btn-sm bg-orange-600 hover:bg-orange-400 hover:border-orange-400 border-orange-600 text-white mr-8">Logout</button>
-            </> : <>
-             <Link to="/login">
-            <button className="btn btn-sm bg-orange-600 hover:bg-orange-400 hover:border-orange-400 border-orange-600 text-white mr-8">Login</button>
-          </Link>
+          )}
+          {user ? (
+            <>
+              <button
+                onClick={handleLogout}
+                className="btn btn-sm bg-orange-600 hover:bg-orange-400 hover:border-orange-400 border-orange-600 text-white mr-8"
+              >
+                Logout
+              </button>
             </>
-          }
+          ) : (
+            <>
+              <Link to="/login">
+                <button className="btn btn-sm bg-orange-600 hover:bg-orange-400 hover:border-orange-400 border-orange-600 text-white mr-8">
+                  Login
+                </button>
+              </Link>
+            </>
+          )}
+          <div className="mr-2">
           <DarkModeToggle
-      onChange={setIsDarkMode}
-      checked={isDarkMode}
-      size={80}
-    />
+            onChange={setIsDarkMode}
+            checked={isDarkMode}
+            size={60}
+          />
+          </div>
         </div>
       </div>
     </>
