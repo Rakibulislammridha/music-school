@@ -9,15 +9,14 @@ const Instructors = () => {
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    // setLoading(true)
-    fetch("http://localhost:3000/users/instructors")
+    setLoading(true)
+    fetch("https://learn-music-server-rakibulislammridha.vercel.app/users/instructors")
     .then(res => res.json())
     .then(data => {
       setInstructors(data); 
+      setLoading(false)
     })
   }, []);
-
-  // const [instructors, loading] = useAllInstructors();
 
   if(loading){
     return <Loader></Loader>

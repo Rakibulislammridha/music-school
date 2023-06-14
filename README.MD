@@ -51,7 +51,7 @@ Technology Uses For This Website:-->
 If you have any questions or concerns regarding this project, please don't hesitate to contact [`dr.rakibulislammridha@gmail.com`].
 
 ## Visit Our Website 
-Visit Us On: [Music School](https://relaxed-bunny-48ff95.netlify.app) for more information.
+Visit Us On: [Music School](https://music-school-1921b.web.app/classes) for more information.
 
 ## Enjoy using the MERN stack project!
 

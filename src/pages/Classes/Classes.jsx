@@ -3,8 +3,6 @@ import { getAllClasses } from "../../api/subjects";
 import SingleClass from "./SingleClass";
 import Loader from "../Shared/Loader/Loader";
 import Title from "../../components/Title/Title";
-import useAxiosSecure from "../../hooks/useAxiosSecure";
-import { useQuery } from "@tanstack/react-query";
 import useAdmin from "../../hooks/useAdmin";
 import useInstructor from "../../hooks/useInstructor";
 
