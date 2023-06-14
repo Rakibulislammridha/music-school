@@ -91,7 +91,7 @@ const SingleClass = ({ singleSubject, isAdmin, isInstructor }) => {
         <title>Music School | Classes</title>
       </Helmet>
       <div className="mb-8">
-        <div className="card w-96 bg-base-100 shadow-2xl h-[500px] group">
+        <div className={`${availableSits === 0 ? "card w-96 bg-red-200 shadow-2xl h-[500px] group" : "card w-96 bg-base-100 shadow-2xl h-[500px] group"}`}>
           <figure className="px-10 pt-10">
             <img
               src={image}
