@@ -48,7 +48,6 @@ const AddClass = () => {
 
             addSubject(classData)
             .then(data =>{
-                console.log(data);
                 Swal.fire({
                     position: "top-center",
                     icon: "success",

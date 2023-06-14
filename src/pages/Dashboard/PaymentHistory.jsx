@@ -13,7 +13,6 @@ const PaymentHistory = () => {
       .then((res) => res.json())
       .then((data) => {
         setPaidClasses(data);
-        console.log(data);
       });
   }, []);
 

@@ -15,8 +15,6 @@ const PaymentPage = () => {
 
     const price = parseFloat(paid)
 
-    console.log(price);
-
     return (
         <div>
             <Title

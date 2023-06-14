@@ -10,10 +10,8 @@ const FeedbackModal = ({ closeModal, isOpen, id, refetch}) => {
         const form = event.target;
 
         const feedback= form.feedback.value;
-    
-        console.log(feedback);
 
-        fetch(`http://localhost:3000/subjects/reject/${id}`, {
+        fetch(`https://learn-music-server.vercel.app/subjects/reject/${id}`, {
             method: "POST",
             headers: {
                 "content-type": "application/json"
@@ -24,7 +22,6 @@ const FeedbackModal = ({ closeModal, isOpen, id, refetch}) => {
         .then(data => {
             refetch()
             closeModal()
-            console.log(data);
             Swal.fire({
                 position: "top-center",
                 icon: "success",

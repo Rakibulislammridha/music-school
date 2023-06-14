@@ -9,7 +9,6 @@ import { FaTrashAlt } from "react-icons/fa";
 
 const ManageClasses = () => {
   const [subjects, refetch] = useAllSubjects();
-  console.log(subjects);
 
   const [isOpen, setIsOpen] = useState(false);
   const [subjectId, setSubjectId] = useState("");
@@ -23,13 +22,12 @@ const ManageClasses = () => {
   }
 
   const handleApprovedSubject = (id) => {
-    console.log(id);
+
     fetch(`${import.meta.env.VITE_API_URL}/subjects/approved/${id}`, {
       method: "PATCH",
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         if (data.modifiedCount) {
           refetch();
           Swal.fire({
@@ -45,7 +43,6 @@ const ManageClasses = () => {
   };
 
   const handleDelete = (id) =>{
-    console.log(id);
     Swal.fire({
         title: 'Are you sure?',
         text: "You won't be able to revert this!",
@@ -65,7 +62,7 @@ const ManageClasses = () => {
                     refetch()
                     Swal.fire(
                         'Deleted!',
-                        'Your file has been deleted.',
+                        'Your Class has been deleted.',
                         'success'
                       )
                 }
@@ -80,7 +77,7 @@ const ManageClasses = () => {
       <Helmet>
         <title>Music School | Manage Classes</title>
       </Helmet>
-      <Title subHeading={"Here Is All"} heading={"All Classes"}></Title>
+      <Title subHeading={"Here Is All"} heading={`All Classes: ${subjects.length}`}></Title>
       <div className="">
         <div className="overflow-x-auto">
           <table className="table table-zebra">

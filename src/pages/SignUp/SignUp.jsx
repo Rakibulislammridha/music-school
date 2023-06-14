@@ -34,13 +34,10 @@ const SignUp = () => {
   const password = watch("password");
 
   const onSubmit = (data) => {
-    console.log(data);
     createUser(data.email, data.password).then((result) => {
       const loggedUser = result.user;
-      console.log(loggedUser);
       updateUser(data.name, data.photo)
         .then(() => {
-          console.log("usr profile updated");
           reset();
           Swal.fire({
             position: "top-center",
@@ -61,13 +58,11 @@ const SignUp = () => {
   const handleGoogleSignIn = () => {
     signInWithGoogle()
       .then((result) => {
-        console.log(result.user);
         //   Save user to database
         saveUser(result.user)
         navigate(from, { replace: true });
       })
       .catch((error) => {
-        console.log(error.message);
         Swal.fire({
           position: "top-center",
           icon: "error",

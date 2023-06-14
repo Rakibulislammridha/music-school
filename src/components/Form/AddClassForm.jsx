@@ -42,6 +42,7 @@ const AddClassForm = ({
                     name="image"
                     id="image"
                     accept="image/*"
+                    required
                     hidden
                   />
                   <div className="bg-orange-500 text-white border border-orange-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-orange-500">

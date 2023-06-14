@@ -23,11 +23,9 @@ const Login = () => {
 
   const onSubmit = (data) =>{
     setLoading(true)
-    console.log(data);
     signIn(data.email, data.password)
     .then(result => {
         const user = result.user;
-        console.log(user);
         Swal.fire({
             position: 'top-center',
             icon: 'success',
@@ -39,7 +37,6 @@ const Login = () => {
           setLoading(false)
     })
     .catch(error => {
-        console.log(error.message);
         Swal.fire({
             position: 'top-center',
             icon: 'error',
@@ -54,14 +51,12 @@ const Login = () => {
   const handleGoogleSignIn = () =>{
     signInWithGoogle()
     .then(result =>{
-        console.log(result.user);
         //   Save user to database 
         saveUser( result.user)
         navigate(from, {replace: true})
         setLoading(false)
     })
     .catch(error =>{
-        console.log(error.message);
         Swal.fire({
             position: 'top-center',
             icon: 'error',

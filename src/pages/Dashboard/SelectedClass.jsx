@@ -9,10 +9,8 @@ import { Link } from 'react-router-dom';
 const SelectedClass = () => {
 
     const [subject, refetch] = useSubject()
-    console.log(subject);
 
     const handleDelete = (id) =>{
-        console.log(id);
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",

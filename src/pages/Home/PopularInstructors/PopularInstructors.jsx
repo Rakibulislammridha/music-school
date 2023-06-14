@@ -10,7 +10,6 @@ const PopularInstructors = () => {
     fetch(`${import.meta.env.VITE_API_URL}/users/popularInstructors`)
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
         setInstructors(data);
       });
   }, []);

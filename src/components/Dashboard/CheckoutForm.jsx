@@ -2,7 +2,8 @@ import { CardElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import React, { useEffect, useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
-import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 
 const CheckoutForm = ({ price, paidSubject }) => {
@@ -10,6 +11,8 @@ const CheckoutForm = ({ price, paidSubject }) => {
   const { user } = useAuth();
 
   const stripe = useStripe();
+
+  const navigate = useNavigate()
 
   const elements = useElements();
 
@@ -27,7 +30,6 @@ const CheckoutForm = ({ price, paidSubject }) => {
   useEffect(() => {
     if( price > 0){
       axiosSecure.post("/create-payment-intent/", { price }).then((res) => {
-        console.log("Response", res.data.clientSecret);
         setClientSecret(res.data.clientSecret);
       });
     }
@@ -55,7 +57,6 @@ const CheckoutForm = ({ price, paidSubject }) => {
       setCardError(error.message);
     } else {
       setCardError("");
-    //   console.log("paymentMethod", paymentMethod);
     }
 
     setProcessing(true)
@@ -73,8 +74,6 @@ const CheckoutForm = ({ price, paidSubject }) => {
     if (confirmError) {
       console.log(confirmError);
     }
-
-    console.log("paymentIntent", paymentIntent);
 
     setProcessing(false)
 
@@ -96,9 +95,15 @@ const CheckoutForm = ({ price, paidSubject }) => {
         }
         axiosSecure.post("/payments", payment)
         .then(res => {
-            console.log(res.data);
             if(res.data.result.insertedId){
-
+              Swal.fire({
+                position: "top-center",
+                icon: "success",
+                title: "Payment Success Enjoy The Course !!",
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              navigate("/dashboard/enrolledClass")
             }
         })
     }

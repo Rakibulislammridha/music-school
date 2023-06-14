@@ -6,7 +6,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { ImSpinner10 } from "react-icons/im";
 import { useEffect } from "react";
 
-const SingleClass = ({ singleSubject }) => {
+const SingleClass = ({ singleSubject, isAdmin, isInstructor }) => {
 
     const {image, subject, price, instructor, availableSits, enrolledStudents, _id } = singleSubject;
 
@@ -16,12 +16,8 @@ const SingleClass = ({ singleSubject }) => {
 
     const {user} = useContext(AuthContext)
 
-    // console.log(user);
-
-    // const user = {};
-
     const navigate = useNavigate();
-
+    
     const location = useLocation();
 
     useEffect(() =>{
@@ -56,7 +52,6 @@ const SingleClass = ({ singleSubject }) => {
         })
         .then(res => res.json())
         .then(data => {
-          console.log(data);
           if(data.insertedId){
             Swal.fire({
               position: "top-center",
@@ -65,12 +60,11 @@ const SingleClass = ({ singleSubject }) => {
               showConfirmButton: false,
               timer: 1500,
             });
-            navigate("/dashboard/selectedClass")
             setLoading(false);
+            navigate("/dashboard/selectedClass")
           }
         })
         .catch(err => {
-          console.log(err);
           setLoading(false);
         })
       }
@@ -90,15 +84,6 @@ const SingleClass = ({ singleSubject }) => {
         })
       }
     }
-
-    // const renderAddClassButton = () => {
-    //   if (user && user.role !== "admin" && user.role !== "instructor") {
-    //     return (
-          
-    //     );
-    //   }
-    //   return null;
-    // };
 
   return (
     <div className="">
@@ -129,9 +114,9 @@ const SingleClass = ({ singleSubject }) => {
             <div className="font-semibold">
             Class Cost:<span className=""> ${price}</span>
             </div>
-            {/* {user?.role === "admin" && user?.role === "instructor" && } */}
+            
             <button
-            disabled={ user && user.role !== "admin" && user.role !== "instructor" && enrolledClass.some((item) => item.subjectId === _id)}
+            disabled={ isAdmin || isInstructor || availableSits === 0 || enrolledClass.some((item) => item.subjectId === _id)}
             onClick={() => handleSelectedSubject(singleSubject)}
             className="btn bg-orange-600 text-white hover:bg-orange-400"
           >

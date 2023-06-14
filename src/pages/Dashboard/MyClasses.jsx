@@ -5,7 +5,6 @@ import Title from "../../components/Title/Title";
 
 const MyClasses = () => {
   const { user } = useContext(AuthContext);
-  console.log(user);
 
   const [myClasses, setMyClasses] = useState([]);
 
@@ -16,9 +15,7 @@ const MyClasses = () => {
         setMyClasses(data);
       });
   }, []);
-
-  console.log(myClasses);
-
+  
   return (
     <div>
       <Helmet>

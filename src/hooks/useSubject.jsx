@@ -12,7 +12,6 @@ const useSubject = () =>{
     enabled: !loading,
     queryFn: async () =>{
         const response = await axiosSecure(`/selectedSubjects?email=${user?.email}`)
-        console.log("response axios", response);
         return response.data;
     }
  })

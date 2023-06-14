@@ -4,9 +4,16 @@ import navLogo from "../../../assets/musicSchoolLogo.jpg";
 import { AuthContext } from "../../../providers/AuthProviders";
 import DarkModeToggle from "react-dark-mode-toggle";
 import { useState } from "react";
+import useAdmin from "../../../hooks/useAdmin";
+import useInstructor from "../../../hooks/useInstructor";
 
 const Navbar = () => {
+
   const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const [isAdmin] = useAdmin();
+
+  const [isInstructor] = useInstructor()
 
   useEffect(() => {
     if (isDarkMode) {
@@ -36,16 +43,15 @@ const Navbar = () => {
       </li>
       {user && (
         <li>
-          {user.role === "admin" && (
-            <Link to="/dashboard/manageUsers">Dashboard</Link>
+          {isAdmin && (
+            <Link to="/dashboard/manageClasses">Dashboard</Link>
           )}
-          {user.role === "instructor" && (
+          {isInstructor && (
             <Link to="/dashboard/myClasses">Dashboard</Link>
           )}
-          <Link to="/dashboard/enrolledClass">Dashboard</Link>
-          {/* {user.role !== "admin" && user.role !== "instructor" && (
-            
-          )} */}
+          {!isAdmin && !isInstructor && (
+            <Link to="/dashboard/selectedClass">Dashboard</Link>
+          )}
         </li>
       )}
     </>
